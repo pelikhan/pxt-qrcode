@@ -13,6 +13,8 @@ import * as images from "./lib/images";
 import * as emit from "./lib/emit";
 import { CodePreview } from './components/codepreview';
 
+const CANVAS_WIDTH = 112;
+
 export interface AppProps {
     client: PXTClient;
     target: string;
@@ -80,7 +82,7 @@ export class App extends React.Component<AppProps, AppState> {
 
     private handleTextChanged(event: any, data: InputOnChangeData) {
         this.setState({ text: data.value, code: "" });
-        const w = 64;
+        const w = CANVAS_WIDTH;
         QRCode.toCanvas(this.canvasRef, data.value, {
             width: w
         }, (err) => {
@@ -113,7 +115,7 @@ export class App extends React.Component<AppProps, AppState> {
                             <Input className="fluid" type="text" onChange={this.handleTextChanged} />
                         </Segment>
                         <Segment>
-                            <canvas ref={this.handleCanvasRef} width={64} height={64}></canvas>
+                            <canvas ref={this.handleCanvasRef} width={CANVAS_WIDTH} height={CANVAS_WIDTH}></canvas>
                         </Segment>
                         <CodePreview text={code} />
                     </Form>
