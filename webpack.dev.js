@@ -34,7 +34,7 @@ module.exports = {
         new HtmlWebpackPlugin({
             inject: false,
             hash: false,
-            title: 'pxt-editor-extension-sample',
+            title: 'pxt-qrcode-generator',
             semanticUIPath: 'semantic-ui-css',
             reactPath: 'react',
             reactDomPath: 'react-dom',
