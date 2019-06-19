@@ -1,18 +1,17 @@
 /// <reference path="./localtypings/extension.d.ts" />
 
 import * as React from 'react';
+import * as QRCode from 'qrcode';
 
-import { List, Header, Button, Container, Message } from "semantic-ui-react";
+import { Form, Container, Message, Segment, Input, InputOnChangeData } from "semantic-ui-react";
 
 import { pxt, PXTClient } from '../lib/pxtextensions';
 import { EmitterFactory } from "./exporter/factory";
 
 import * as util from "./lib/util";
-import * as workspace from "./lib/workspace";
 import * as images from "./lib/images";
 import * as emit from "./lib/emit";
-
-import { FileInfo } from "./components/asset";
+import { CodePreview } from './components/codepreview';
 
 export interface AppProps {
     client: PXTClient;
@@ -21,18 +20,20 @@ export interface AppProps {
 
 export interface AppState {
     target: string;
+    text: string;
+    code: string;
 }
 
-let initDrag = false;
-
 export class App extends React.Component<AppProps, AppState> {
-    private files: FileInfo[] = [];
+    private canvasRef: HTMLCanvasElement;
 
     constructor(props: AppProps) {
         super(props);
 
         this.state = {
-            target: props.target
+            target: props.target,
+            text: "",
+            code: ""
         }
 
         this.deserialize = this.deserialize.bind(this);
@@ -41,28 +42,13 @@ export class App extends React.Component<AppProps, AppState> {
         props.client.on('read', this.deserialize);
         props.client.on('hidden', this.serialize);
 
-        workspace.onNewFile(() => {
-            this.forceUpdate();
-        })
-
         this.downloadProject = this.downloadProject.bind(this);
-        this.handleFileRef = this.handleFileRef.bind(this);
-        this.handleAppRef = this.handleAppRef.bind(this);
+        this.handleCanvasRef = this.handleCanvasRef.bind(this);
+        this.handleTextChanged = this.handleTextChanged.bind(this);
     }
 
-    private handleFileRef(ref: FileInfo) {
-        this.files.push(ref);
-    }
-
-    private handleAppRef(ref: HTMLDivElement) {
-        if (!initDrag) {
-            util.setupDragAndDrop(ref, f => !workspace.project.files.some(s => s.name === f.name), async files => {
-                for (const f of files) {
-                    await workspace.createFileAsync(f);
-                }
-            });
-            initDrag = true;
-        }
+    private handleCanvasRef(ref: HTMLCanvasElement) {
+        this.canvasRef = ref;
     }
 
     private deserialize(resp: pxt.extensions.ReadResponse) {
@@ -88,57 +74,49 @@ export class App extends React.Component<AppProps, AppState> {
 
     private downloadProject() {
         const assets: EncodedImage[] = [];
-        const palettes = workspace.allPalettes();
-
-        for (const f of this.files) {
-            if (!f.hasAsset()) continue;
-
-            const asset = f.getAsset();
-            if ((asset as SpriteSheet).spriteCount != undefined) {
-                assets.push(...images.encodeSpriteSheet(asset as SpriteSheet));
-            }
-            else {
-                assets.push(images.encodeSprite(asset as Sprite));
-            }
-        }
         let ts = emit.emitImages("projectImages", assets);
-
-        if (palettes.length) {
-            ts += "\n" + emit.emitPalettes("palettes", palettes);
-        }
-
         util.browserDownloadText(ts, "assets.ts");
     }
 
+    private handleTextChanged(event: any, data: InputOnChangeData) {
+        this.setState({ text: data.value, code: "" });
+        const w = 64;
+        QRCode.toCanvas(this.canvasRef, data.value, {
+            width: w
+        }, (err) => {
+            const data = this.canvasRef.getContext("2d")
+                .getImageData(0, 0, w, w);
+            const code =
+                `const qrcode = sprites.create(${images.imgEncodeImg(
+                    data.width,
+                    data.height,
+                    (x: number, y: number) => data.data[(y * data.width + x) * 4] ? 1 : 0
+                )});
+`;
+            this.setState({ code: code });
+        })
+    }
+
     render() {
+        const { code } = this.state;
         return (
-            <div className="App" ref={this.handleAppRef}>
+            <div className="App">
                 <Container>
-                    <Message>
-                    <Message.Header>Microsoft MakeCode Arcade asset tool</Message.Header>
-                    <p style={{textAlign: "left"}}>
-                        Drag and drop images onto this page to add them to your workspace. Currently
-                        .png files are supported for images and .hex, .txt, and .gpl files are supported
-                        for image palettes. Press export to get a .ts file with your assets encoded.
+                    <Form>
+                        <Message>
+                            <Message.Header>QR Code generator for MakeCode</Message.Header>
+                            <p style={{ textAlign: "left" }}>
+                                Enter the URL to be encoded as a QR code
                     </p>
-                    </Message>
-                    <div className="file-list-header">
-                        <Header as="h1">Project Files</Header>
-                    </div>
-                    <div className="file-list">
-                        <List>
-                            { workspace.project.files.map(f =>
-                                <List.Item key={"file_" + f.id}>
-                                    <FileInfo ref={this.handleFileRef} file={f} />
-                                </List.Item>)
-                            }
-                        </List>
-                    </div>
-                    <div className="export-controls">
-                        <Button floated="right" onClick={this.downloadProject}>
-                            Export
-                        </Button>
-                    </div>
+                        </Message>
+                        <Segment>
+                            <Input className="fluid" type="text" onChange={this.handleTextChanged} />
+                        </Segment>
+                        <Segment>
+                            <canvas ref={this.handleCanvasRef} width={64} height={64}></canvas>
+                        </Segment>
+                        <CodePreview text={code} />
+                    </Form>
                 </Container>
             </div>
         );
