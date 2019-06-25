@@ -477,8 +477,7 @@ namespace qrcode {
       return data;
     }
 
-
-    public toImage(cellSize = 2, margin = 4): Image {
+    public toImage(cellSize = 3, margin = 6, dark = 15, background = 1): Image {
       let mods = this.getModuleCount();
       let size = cellSize * mods + margin * 2;
       let gif = image.create(size, size);
@@ -489,9 +488,9 @@ namespace qrcode {
             this.isDark(
               ~~((y - margin) / cellSize),
               ~~((x - margin) / cellSize))) {
-            gif.setPixel(x, y, 0);
+            gif.setPixel(x, y, dark);
           } else {
-            gif.setPixel(x, y, 1);
+            gif.setPixel(x, y, background);
           }
         }
       }
