@@ -21,6 +21,7 @@
         "qrmath.ts",
         "qrutil.ts",
         "rsblock.ts",
+        "api.ts",
         "README.md"
     ],
     "public": true,

@@ -39,7 +39,6 @@ namespace qrcode {
           case Mode.MODE_NUMBER: return 10;
           case Mode.MODE_ALPHA_NUM: return 9;
           case Mode.MODE_8BIT_BYTE: return 8;
-          case Mode.MODE_KANJI: return 8;
           default:
             return qrcode.panic('mode:' + this.mode);
         }
@@ -52,7 +51,6 @@ namespace qrcode {
           case Mode.MODE_NUMBER: return 12;
           case Mode.MODE_ALPHA_NUM: return 11;
           case Mode.MODE_8BIT_BYTE: return 16;
-          case Mode.MODE_KANJI: return 10;
           default:
             return qrcode.panic('mode:' + this.mode);
         }
@@ -65,7 +63,6 @@ namespace qrcode {
           case Mode.MODE_NUMBER: return 14;
           case Mode.MODE_ALPHA_NUM: return 13;
           case Mode.MODE_8BIT_BYTE: return 16;
-          case Mode.MODE_KANJI: return 12;
           default:
             return qrcode.panic('mode:' + this.mode);
         }

@@ -88,7 +88,6 @@ namespace qrcode {
         case Mode.MODE_NUMBER: m = 0; break;
         case Mode.MODE_ALPHA_NUM: m = 1; break;
         case Mode.MODE_8BIT_BYTE: m = 2; break;
-        case Mode.MODE_KANJI: m = 3; break;
         default:
           qrcode.panic('m:' + mode);
       }
@@ -107,6 +106,38 @@ namespace qrcode {
 
       return a;
     }
+
+    public static getMode(s: string): Mode {
+      if (QRUtil.isAlphaNum(s)) {
+        if (QRUtil.isNumber(s)) {
+          return Mode.MODE_NUMBER;
+        }
+        return Mode.MODE_ALPHA_NUM;
+      } else {
+        return Mode.MODE_8BIT_BYTE;
+      }
+    }
+
+
+    private static isNumber(s: string) {
+      for (let i = 0; i < s.length; i++) {
+        const c = s.charAt(i);
+        if (!('0' <= c && c <= '9') ) {
+          return false;
+        }
+      }
+      return true;
+    }
+  
+    private static isAlphaNum(s: string): boolean {
+      for (let i = 0; i < s.length(); i++) {
+        let c = s.charAt(i);
+        if (!('0' <= c && c <= '9') && !('A' <= c && c <= 'Z') && " $%*+-./:".indexOf(c) == -1) {
+          return false;
+        }
+      }
+      return true;
+    }  
 
     public static getMaskFunc(
       maskPattern: number
