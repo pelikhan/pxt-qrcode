@@ -1,5 +1,4 @@
-'use strict';
-namespace com.d_project.qrcode {
+namespace qrcode {
 
   /**
    * Mode

@@ -1,11 +1,11 @@
 namespace test {
 
-    import QRCode = com.d_project.qrcode.QRCode;
-    import ErrorCorrectLevel = com.d_project.qrcode.ErrorCorrectLevel;
-    import QRNumber = com.d_project.qrcode.QRNumber;
-    import QRAlphaNum = com.d_project.qrcode.QRAlphaNum;
-    import QR8BitByte = com.d_project.qrcode.QR8BitByte;
-    import QRKanji = com.d_project.qrcode.QRKanji;
+    import QRCode = qrcode.QRCode;
+    import ErrorCorrectLevel = qrcode.ErrorCorrectLevel;
+    import QRNumber = qrcode.QRNumber;
+    import QRAlphaNum = qrcode.QRAlphaNum;
+    import QR8BitByte = qrcode.QR8BitByte;
+    import QRKanji = qrcode.QRKanji;
 
     export function run(): void {
 

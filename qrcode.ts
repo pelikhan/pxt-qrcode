@@ -15,7 +15,7 @@
 //
 //---------------------------------------------------------------------
 
-namespace com.d_project.qrcode {
+namespace qrcode {
 
   /**
    * QRCode
