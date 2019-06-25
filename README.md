@@ -16,7 +16,8 @@ let img = qrcode.encodeString("https://makecode.com");
 
 ## Limitations
 
-Kanji codes are not supported.
+* Kanji codes are not supported.
+* It may take a few seconds to generate the code, so that algorithm is interleaved with ``pause`` to allow it to run in the background.
 
 ## Acknoledgment: QR code generator
 
