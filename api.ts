@@ -6,6 +6,8 @@ namespace qrcode {
     //% blockId=qrcodeencodestring block="encode $text to qrcode"
     export function encodeString(text: string): Image {
         const qr = qrcode.QRCode.getMinimumQRCode(text, ErrorCorrectLevel.M);
-        return qr.toImage();
+        const img = qr.toImage();
+        qr.clean();
+        return img;
     }
 }

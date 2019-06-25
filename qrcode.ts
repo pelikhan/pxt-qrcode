@@ -498,6 +498,10 @@ namespace qrcode {
       return gif;
     }
 
+    clean() {
+      QRMath.clean();
+    }
+
     // using builtin UTF8
     public static stringToBytes = (s: string) => control.createBufferFromUTF8(s);
 

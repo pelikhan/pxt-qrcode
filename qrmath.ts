@@ -44,5 +44,10 @@ namespace qrcode {
       }
       return QRMath.EXP_TABLE[n];
     }
+
+    public static clean() {
+      QRMath.EXP_TABLE = undefined;
+      QRMath.LOG_TABLE = undefined;
+    }
   }
 }
