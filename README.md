@@ -5,6 +5,14 @@ A simple tool to generate QR Code images for MakeCode (port of https://github.co
 The word "QR Code" is registered trademark of DENSO WAVE INCORPORATED 
 http://www.denso-wave.com/qrcode/faqpatent-e.html
 
+## Examples
+
+Use ``||qrcode:encode string||`` to generate a QR code image.
+
+```blocks
+let img = qrcode.encodeString("https://google.com");
+```
+
 ## Limitations
 
 Kanji codes are not supported.

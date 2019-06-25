@@ -1,3 +1,7 @@
+/**
+ * QR code generation
+ */
+//% icon="\uf029" color=0x909090 block="QR Code"
 namespace qrcode {
     /**
      * Encodes a string into a QR Code image
