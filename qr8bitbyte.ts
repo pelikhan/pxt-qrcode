@@ -11,14 +11,14 @@ namespace qrcode {
     }
 
     public write(buffer : BitBuffer) : void {
-      let data = QRCode.stringToBytes(this.getData() );
+      let data = control.createBufferFromUTF8(this.getData() );
       for (let i = 0; i < data.length; i += 1) {
         buffer.put(data[i], 8);
       }
     }
 
     public getLength() : number {
-      return QRCode.stringToBytes(this.getData() ).length;
+      return control.createBufferFromUTF8(this.getData() ).length;
     }
   }
 }

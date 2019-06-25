@@ -137,7 +137,7 @@ namespace qrcode {
     }
 
     private makeImpl(test: boolean, maskPattern: number): void {
-
+      pause(1); // make sure other code can run
       // initialize modules
       this.moduleCount = this.typeNumber * 4 + 17;
       this.modules = [];
@@ -499,10 +499,8 @@ namespace qrcode {
 
     clean() {
       QRMath.clean();
+      QRUtil.clean();
     }
-
-    // using builtin UTF8
-    public static stringToBytes = (s: string) => control.createBufferFromUTF8(s);
 
     static getMinimumQRCode(s: string, errorCorrectionLevel: ErrorCorrectLevel): QRCode {
 
@@ -521,6 +519,7 @@ namespace qrcode {
       }
 
       qr.make();
+      qr.clean();
 
       return qr;
     }
