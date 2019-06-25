@@ -1,21 +1,40 @@
 {
-    "name": "qrcode-generator",
+    "name": "qrcode",
     "version": "0.0.1",
     "description": "A QR code generator for MakeCode",
     "license": "MIT",
     "dependencies": {
-        "core": "*"
+        "core": "*",
+        "screen": "*"
     },
     "files": [
+        "bitbuffer.ts",
+        "errorcorrectlevel.ts",
+        "maskpattern.ts",
+        "mode.ts",
+        "polynomial.ts",
+        "qr8bitbyte.ts",
+        "qralphanum.ts",
+        "qrcode.ts",
+        "qrdata.ts",
+        "qrnumber.ts",
+        "qrmath.ts",
+        "qrutil.ts",
+        "rsblock.ts",
+        "api.ts",
         "README.md"
-    ],
-    "testFiles": [
-        "test.ts"
     ],
     "public": true,
     "extension": {
         "namespace": "images",
         "label": "QR Code",
         "localUrl": "http://127.0.0.1:3000/index.html"
-    }
+    },
+    "testFiles": [
+        "test.ts"
+    ],
+    "testDependencies": {
+        "game": "*"
+    },
+    "preferredEditor": "tsprj"
 }
