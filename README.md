@@ -7,10 +7,11 @@ http://www.denso-wave.com/qrcode/faqpatent-e.html
 
 ## Examples
 
-Use ``||qrcode:encode string||`` to generate a QR code image.
+Use ``||qrcode:encode string||`` to generate a QR code image. It automatically
+scales the image to fit the screen.
 
 ```blocks
-let img = qrcode.encodeString("https://google.com");
+let img = qrcode.encodeString("https://makecode.com");
 ```
 
 ## Limitations
