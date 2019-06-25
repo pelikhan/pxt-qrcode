@@ -12,7 +12,6 @@ namespace qrcode {
     export function encodeString(text: string): Image {
         const qr = qrcode.QRCode.getMinimumQRCode(text, ErrorCorrectLevel.M);
         const img = qr.toImage();
-        qr.clean();
         return img;
     }
 }
