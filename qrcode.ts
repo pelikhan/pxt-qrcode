@@ -163,6 +163,7 @@ namespace qrcode {
 
       let data = QRCode.createData(
         this.typeNumber, this.errorCorrectLevel, this.qrDataList);
+      pause(1);
       this.mapData(data, maskPattern);
     }
 
@@ -251,7 +252,7 @@ namespace qrcode {
     }
 
     private setupPositionProbePattern(row: number, col: number): void {
-
+      pause(1)
       for (let r = -1; r <= 7; r += 1) {
 
         for (let c = -1; c <= 7; c += 1) {
@@ -482,7 +483,7 @@ namespace qrcode {
       margin = Math.max(0, margin | 0);
       dark = dark | 0;
       background = background | 0;
-      
+
       let mods = this.getModuleCount();
       let size = cellSize * mods + margin * 2;
       let gif = image.create(size, size);
