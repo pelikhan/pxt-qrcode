@@ -5,6 +5,10 @@ A simple tool to generate QR Code images for MakeCode (port of https://github.co
 The word "QR Code" is registered trademark of DENSO WAVE INCORPORATED 
 http://www.denso-wave.com/qrcode/faqpatent-e.html
 
+## Limitations
+
+Kanji codes are not supported.
+
 ## Acknoledgment: QR code generator
 
 This library is a port of https://github.com/kazuhikoarase/qrcode-generator,
