@@ -12,13 +12,13 @@ namespace qrcode {
 
     public write(buffer : BitBuffer) : void {
 
-      var data = QRCode.stringToBytes(this.getData() );
+      let data = QRCode.stringToBytes(this.getData() );
 
-      var i = 0;
+      let i = 0;
 
       while (i + 1 < data.length) {
 
-        var c = ( (0xff & data[i]) << 8) | (0xff & data[i + 1]);
+        let c = ( (0xff & data[i]) << 8) | (0xff & data[i + 1]);
 
         if (0x8140 <= c && c <= 0x9FFC) {
           c -= 0x8140;

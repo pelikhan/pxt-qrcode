@@ -12,9 +12,9 @@ namespace qrcode {
 
     public write(buffer : BitBuffer) : void {
 
-      var data = this.getData();
+      let data = this.getData();
 
-      var i = 0;
+      let i = 0;
 
       while (i + 2 < data.length) {
         buffer.put(QRNumber.strToNum(data.substr(i, 3) ), 10);
@@ -35,8 +35,8 @@ namespace qrcode {
     }
 
     private static strToNum(s : string) : number {
-      var num = 0;
-      for (var i = 0; i < s.length; i += 1) {
+      let num = 0;
+      for (let i = 0; i < s.length; i += 1) {
         num = num * 10 + QRNumber.chatToNum(s.charAt(i) );
       }
       return num;

@@ -17,7 +17,7 @@ namespace qrcode {
       if (QRMath.EXP_TABLE) return;
       QRMath.EXP_TABLE = [];
       QRMath.LOG_TABLE = [];
-      for (var i = 0; i < 256; i += 1) {
+      for (let i = 0; i < 256; i += 1) {
         QRMath.EXP_TABLE.push(i < 8? 1 << i :
           QRMath.EXP_TABLE[i - 4] ^
           QRMath.EXP_TABLE[i - 5] ^
@@ -25,7 +25,7 @@ namespace qrcode {
           QRMath.EXP_TABLE[i - 8]);
         QRMath.LOG_TABLE.push(0);
       }
-      for (var i = 0; i < 255; i += 1) {
+      for (let i = 0; i < 255; i += 1) {
         QRMath.LOG_TABLE[QRMath.EXP_TABLE[i] ] = i;
       }
     };

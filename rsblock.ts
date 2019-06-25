@@ -273,18 +273,18 @@ namespace qrcode {
       errorCorrectLevel : ErrorCorrectLevel
     ) : RSBlock[] {
 
-      var rsBlock = RSBlock.getRsBlockTable(typeNumber, errorCorrectLevel);
-      var length = rsBlock.length / 3;
+      let rsBlock = RSBlock.getRsBlockTable(typeNumber, errorCorrectLevel);
+      let length = rsBlock.length / 3;
 
-      var list : RSBlock[] = [];
+      let list : RSBlock[] = [];
 
-      for (var i = 0; i < length; i += 1) {
+      for (let i = 0; i < length; i += 1) {
 
-        var count = rsBlock[i * 3 + 0];
-        var totalCount = rsBlock[i * 3 + 1];
-        var dataCount = rsBlock[i * 3 + 2];
+        let count = rsBlock[i * 3 + 0];
+        let totalCount = rsBlock[i * 3 + 1];
+        let dataCount = rsBlock[i * 3 + 2];
 
-        for (var j = 0; j < count; j += 1) {
+        for (let j = 0; j < count; j += 1) {
           list.push(new RSBlock(totalCount, dataCount) );
         }
       }

@@ -76,9 +76,9 @@ namespace qrcode {
       errorCorrectLevel : ErrorCorrectLevel
     ) : number {
 
-        var t = typeNumber - 1;
-        var e = 0;
-        var m = 0;
+        let t = typeNumber - 1;
+        let e = 0;
+        let m = 0;
 
         switch(errorCorrectLevel) {
         case ErrorCorrectLevel.L : e = 0; break;
@@ -104,9 +104,9 @@ namespace qrcode {
     public static getErrorCorrectPolynomial(
         errorCorrectLength : number) : Polynomial {
 
-      var a = new Polynomial([1]);
+      let a = new Polynomial([1]);
 
-      for (var i = 0; i < errorCorrectLength; i += 1) {
+      for (let i = 0; i < errorCorrectLength; i += 1) {
         a = a.multiply(new Polynomial([1, QRMath.gexp(i)]) );
       }
 
@@ -143,26 +143,26 @@ namespace qrcode {
 
     public static getLostPoint(qrCode : QRCode) : number {
 
-      var moduleCount = qrCode.getModuleCount();
+      let moduleCount = qrCode.getModuleCount();
 
-      var lostPoint = 0;
+      let lostPoint = 0;
 
       // LEVEL1
 
-      for (var row = 0; row < moduleCount; row += 1) {
+      for (let row = 0; row < moduleCount; row += 1) {
 
-        for (var col = 0; col < moduleCount; col += 1) {
+        for (let col = 0; col < moduleCount; col += 1) {
 
-          var sameCount = 0;
-          var dark = qrCode.isDark(row, col);
+          let sameCount = 0;
+          let dark = qrCode.isDark(row, col);
 
-          for (var r = -1; r <= 1; r += 1) {
+          for (let r = -1; r <= 1; r += 1) {
 
             if (row + r < 0 || moduleCount <= row + r) {
               continue;
             }
 
-            for (var c = -1; c <= 1; c += 1) {
+            for (let c = -1; c <= 1; c += 1) {
 
               if (col + c < 0 || moduleCount <= col + c) {
                 continue;
@@ -186,9 +186,9 @@ namespace qrcode {
 
       // LEVEL2
 
-      for (var row = 0; row < moduleCount - 1; row += 1) {
-        for (var col = 0; col < moduleCount - 1; col += 1) {
-          var count = 0;
+      for (let row = 0; row < moduleCount - 1; row += 1) {
+        for (let col = 0; col < moduleCount - 1; col += 1) {
+          let count = 0;
           if (qrCode.isDark(row,     col    ) ) count += 1;
           if (qrCode.isDark(row + 1, col    ) ) count += 1;
           if (qrCode.isDark(row,     col + 1) ) count += 1;
@@ -201,8 +201,8 @@ namespace qrcode {
 
       // LEVEL3
 
-      for (var row = 0; row < moduleCount; row += 1) {
-        for (var col = 0; col < moduleCount - 6; col += 1) {
+      for (let row = 0; row < moduleCount; row += 1) {
+        for (let col = 0; col < moduleCount - 6; col += 1) {
           if (qrCode.isDark(row, col)
               && !qrCode.isDark(row, col + 1)
               &&  qrCode.isDark(row, col + 2)
@@ -215,8 +215,8 @@ namespace qrcode {
         }
       }
 
-      for (var col = 0; col < moduleCount; col += 1) {
-        for (var row = 0; row < moduleCount - 6; row += 1) {
+      for (let col = 0; col < moduleCount; col += 1) {
+        for (let row = 0; row < moduleCount - 6; row += 1) {
           if (qrCode.isDark(row, col)
               && !qrCode.isDark(row + 1, col)
               &&  qrCode.isDark(row + 2, col)
@@ -231,24 +231,24 @@ namespace qrcode {
 
       // LEVEL4
 
-      var darkCount = 0;
+      let darkCount = 0;
 
-      for (var col = 0; col < moduleCount; col += 1) {
-        for (var row = 0; row < moduleCount; row += 1) {
+      for (let col = 0; col < moduleCount; col += 1) {
+        for (let row = 0; row < moduleCount; row += 1) {
           if (qrCode.isDark(row, col) ) {
             darkCount += 1;
           }
         }
       }
 
-      var ratio = Math.abs(100 * darkCount / moduleCount / moduleCount - 50) / 5;
+      let ratio = Math.abs(100 * darkCount / moduleCount / moduleCount - 50) / 5;
       lostPoint += ratio * 10;
 
       return lostPoint;
     }
 
     public static getBCHTypeInfo(data : number) : number {
-      var d = data << 10;
+      let d = data << 10;
       while (QRUtil.getBCHDigit(d) - QRUtil.getBCHDigit(QRUtil.G15) >= 0) {
         d ^= (QRUtil.G15 << (QRUtil.getBCHDigit(d) -
           QRUtil.getBCHDigit(QRUtil.G15) ) );
@@ -257,7 +257,7 @@ namespace qrcode {
     }
 
     public static getBCHTypeNumber(data : number) : number {
-      var d = data << 12;
+      let d = data << 12;
       while (QRUtil.getBCHDigit(d) - QRUtil.getBCHDigit(QRUtil.G18) >= 0) {
         d ^= (QRUtil.G18 << (QRUtil.getBCHDigit(d) -
           QRUtil.getBCHDigit(QRUtil.G18) ) );
@@ -275,7 +275,7 @@ namespace qrcode {
       | (1 << 4) | (1 << 1);
 
     private static getBCHDigit(data : number) : number {
-      var digit = 0;
+      let digit = 0;
       while (data != 0) {
         digit += 1;
         data >>>= 1;
