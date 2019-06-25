@@ -16,6 +16,11 @@
 //---------------------------------------------------------------------
 
 namespace qrcode {
+  export function panic(msg: string): any {
+    console.log(msg);
+    control.panic(777);
+    return undefined;
+  }
 
   /**
    * QRCode
@@ -63,14 +68,8 @@ namespace qrcode {
       this.qrDataList = [];
     }
 
-    public addData(qrData : QRData | string) : void {
-      if (qrData instanceof QRData) {
-        this.qrDataList.push(qrData);
-      } else if (typeof qrData === 'string') {
-        this.qrDataList.push(new QR8BitByte(qrData) );
-      } else {
-        throw typeof qrData;
-      }
+    public addData(qrData : QRData) : void {
+      this.qrDataList.push(qrData);
     }
 
     private getDataCount() : number {
@@ -345,11 +344,11 @@ namespace qrcode {
       }
 
       if (buffer.getLengthInBits() > totalDataCount * 8) {
-        throw 'code length overflow. ('
+        qrcode.panic('code length overflow. ('
           + buffer.getLengthInBits()
           + '>'
           +  totalDataCount * 8
-          + ')';
+          + ')')
       }
 
       // end
@@ -459,7 +458,7 @@ namespace qrcode {
     }
 
 
-    public toImage(cellSize = 1, margin = cellSize * 4) : Image {
+    public toImage(cellSize = 1, margin = 4) : Image {
       let mods = this.getModuleCount();
       let size = cellSize * mods + margin * 2;
       let gif = image.create(size, size);

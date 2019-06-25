@@ -255,28 +255,28 @@ namespace qrcode {
     ];
 
     constructor(
-      private totalCount : number,
-      private dataCount : number
+      private totalCount: number,
+      private dataCount: number
     ) {
     }
 
-    public getDataCount() : number {
+    public getDataCount(): number {
       return this.dataCount;
     }
 
-    public getTotalCount() : number {
+    public getTotalCount(): number {
       return this.totalCount;
     }
 
     public static getRSBlocks(
-      typeNumber : number,
-      errorCorrectLevel : ErrorCorrectLevel
-    ) : RSBlock[] {
+      typeNumber: number,
+      errorCorrectLevel: ErrorCorrectLevel
+    ): RSBlock[] {
 
       let rsBlock = RSBlock.getRsBlockTable(typeNumber, errorCorrectLevel);
       let length = rsBlock.length / 3;
 
-      let list : RSBlock[] = [];
+      let list: RSBlock[] = [];
 
       for (let i = 0; i < length; i += 1) {
 
@@ -285,7 +285,7 @@ namespace qrcode {
         let dataCount = rsBlock[i * 3 + 2];
 
         for (let j = 0; j < count; j += 1) {
-          list.push(new RSBlock(totalCount, dataCount) );
+          list.push(new RSBlock(totalCount, dataCount));
         }
       }
 
@@ -293,24 +293,24 @@ namespace qrcode {
     }
 
     private static getRsBlockTable(
-      typeNumber : number,
-      errorCorrectLevel : ErrorCorrectLevel
-    ) : number[] {
+      typeNumber: number,
+      errorCorrectLevel: ErrorCorrectLevel
+    ): number[] {
 
-      switch(errorCorrectLevel) {
-      case ErrorCorrectLevel.L :
-        return RSBlock.RS_BLOCK_TABLE[(typeNumber - 1) * 4 + 0];
-      case ErrorCorrectLevel.M :
-        return RSBlock.RS_BLOCK_TABLE[(typeNumber - 1) * 4 + 1];
-      case ErrorCorrectLevel.Q :
-        return RSBlock.RS_BLOCK_TABLE[(typeNumber - 1) * 4 + 2];
-      case ErrorCorrectLevel.H :
-        return RSBlock.RS_BLOCK_TABLE[(typeNumber - 1) * 4 + 3];
-      default :
-        break;
+      switch (errorCorrectLevel) {
+        case ErrorCorrectLevel.L:
+          return RSBlock.RS_BLOCK_TABLE[(typeNumber - 1) * 4 + 0];
+        case ErrorCorrectLevel.M:
+          return RSBlock.RS_BLOCK_TABLE[(typeNumber - 1) * 4 + 1];
+        case ErrorCorrectLevel.Q:
+          return RSBlock.RS_BLOCK_TABLE[(typeNumber - 1) * 4 + 2];
+        case ErrorCorrectLevel.H:
+          return RSBlock.RS_BLOCK_TABLE[(typeNumber - 1) * 4 + 3];
+        default:
+          break;
       }
 
-      throw 'tn:' + typeNumber + '/ecl:' + errorCorrectLevel;
+      return qrcode.panic('tn:' + typeNumber + '/ecl:' + errorCorrectLevel);
     }
   }
 }

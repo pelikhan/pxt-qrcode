@@ -18,12 +18,13 @@ namespace test {
         qr.addData(new QRNumber('0123')); // Number only
         qr.addData(new QRAlphaNum('AB5678CD')); // Alphabet and Number
         qr.addData(new QR8BitByte('[8BitByte :)]')); // most useful for usual purpose.
-        qr.addData('[here is 8BitByte too]');
         qr.addData(new QRKanji('漢字')); // Kanji(SJIS) only
         qr.make();
 
         let img = qr.toImage();
 
-        sprites.create(img);
+        let sprite = sprites.create(img);
     }
+
+    run();
 }

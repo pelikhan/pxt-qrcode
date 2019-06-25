@@ -50,7 +50,7 @@ namespace qrcode {
         case '/' : return 43;
         case ':' : return 44;
         default :
-          throw 'illegal char :' + c;
+          return qrcode.panic('illegal char :' + c);
         }
       }
     }

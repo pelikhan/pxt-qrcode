@@ -25,7 +25,7 @@ namespace qrcode {
         } else if (0xE040 <= c && c <= 0xEBBF) {
           c -= 0xC140;
         } else {
-          throw 'illegal char at ' + (i + 1) + '/' + c;
+          qrcode.panic('illegal char at ' + (i + 1) + '/' + c);
         }
 
         c = ( (c >>> 8) & 0xff) * 0xC0 + (c & 0xff);
@@ -36,7 +36,7 @@ namespace qrcode {
       }
 
       if (i < data.length) {
-        throw 'illegal char at ' + (i + 1);
+        qrcode.panic('illegal char at ' + (i + 1));
       }
     }
 

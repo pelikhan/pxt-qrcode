@@ -46,7 +46,7 @@ namespace qrcode {
       if ('0' <= c && c <= '9') {
         return c.charCodeAt(0) - '0'.charCodeAt(0);
       }
-      throw 'illegal char :' + c;
+      return qrcode.panic('illegal char :' + c);
     }
   }
 }

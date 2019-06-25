@@ -6,10 +6,6 @@ namespace qrcode {
    */
   export class QRMath {
 
-    constructor() {
-      throw 'error';
-    }
-
     private static EXP_TABLE : number[];
     private static LOG_TABLE : number[];
 
@@ -33,7 +29,7 @@ namespace qrcode {
     public static glog(n : number) : number {
       QRMath.initialize();
       if (n < 1) {
-        throw 'log(' + n + ')';
+        qrcode.panic('log(' + n + ')');
       }
       return QRMath.LOG_TABLE[n];
     }
