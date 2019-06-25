@@ -64,6 +64,13 @@ namespace qrcode {
       this.errorCorrectLevel = errorCorrectLevel;
     }
 
+    public getBestCellSize(img: Image, margin = 4, padding = 2) {
+      const wh = Math.min(img.width, img.height); // needs to fit in those
+      // maximum cell size
+      const cellsize = Math.max(1, Math.floor((wh - 2 * (margin + padding)) / this.getModuleCount()));
+      return cellsize;
+    }
+
     public clearData(): void {
       this.qrDataList = [];
     }
@@ -478,7 +485,7 @@ namespace qrcode {
       return data;
     }
 
-    public toImage(cellSize = 3, margin = 6, dark = 15, background = 1): Image {
+    public toImage(cellSize = 2, margin = 4, dark = 15, background = 1): Image {
       cellSize = Math.max(1, cellSize | 0);
       margin = Math.max(0, margin | 0);
       dark = dark | 0;
