@@ -1,6 +1,7 @@
 /**
  * QR code generation
  */
+//% advanced=true
 //% icon="\uf029" color=0x909090 block="QR Code"
 namespace qrcode {
     /**
