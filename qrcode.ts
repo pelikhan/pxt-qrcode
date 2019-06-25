@@ -478,6 +478,11 @@ namespace qrcode {
     }
 
     public toImage(cellSize = 3, margin = 6, dark = 15, background = 1): Image {
+      cellSize = Math.max(1, cellSize | 0);
+      margin = Math.max(0, margin | 0);
+      dark = dark | 0;
+      background = background | 0;
+      
       let mods = this.getModuleCount();
       let size = cellSize * mods + margin * 2;
       let gif = image.create(size, size);
