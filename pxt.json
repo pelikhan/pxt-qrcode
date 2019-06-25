@@ -35,5 +35,6 @@
     ],
     "testDependencies": {
         "game": "*"
-    }
+    },
+    "preferredEditor": "tsprj"
 }
