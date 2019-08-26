@@ -1,14 +1,15 @@
+
 name: MakeCode CI
 
 on: [push]
 
 jobs:
-  build:
+    build:
 
     runs-on: ubuntu-latest
 
     strategy:
-      matrix:
+        matrix:
         node-version: [8.x]
 
     steps:
@@ -18,10 +19,10 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
     - name: npm install, build, and test
-      run: |
-        npm install -g pxt
-        pxt target arcade
-        pxt install
-        pxt build --cloud
-      env:
-        CI: true
+        run: |
+            npm install -g pxt
+            pxt target arcade
+            pxt install
+            pxt build --cloud
+        env:
+            CI: true
