@@ -20,7 +20,7 @@ jobs:
     - name: npm install, build, and test
       run: |
         npm install -g pxt
-        pxt target maker
+        pxt target arcade
         pxt install
         pxt build --cloud
       env:
