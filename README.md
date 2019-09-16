@@ -21,8 +21,7 @@ let img = qrcode.encodeString("https://makecode.com");
 
 ## Acknoledgment: QR code generator
 
-This library is a port of https://github.com/kazuhikoarase/qrcode-generator,
-optimized for the MakeCode environment.
+This library is a port of https://github.com/kazuhikoarase/qrcode-generator, optimized for the MakeCode environment.
 
 ## Supported targets
 * for PXT/arcade
