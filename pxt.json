@@ -24,17 +24,20 @@
         "api.ts",
         "README.md"
     ],
-    "public": true,
-    "extension": {
-        "namespace": "images",
-        "label": "QR Code",
-        "localUrl": "http://127.0.0.1:3000/index.html"
-    },
     "testFiles": [
         "test.ts"
     ],
     "testDependencies": {
         "game": "*"
     },
-    "preferredEditor": "tsprj"
+    "public": true,
+    "supportedTargets": [
+        "arcade"
+    ],
+    "preferredEditor": "tsprj",
+    "extension": {
+        "namespace": "images",
+        "label": "QR Code",
+        "localUrl": "http://127.0.0.1:3000/index.html"
+    }
 }

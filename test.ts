@@ -9,7 +9,7 @@ namespace test {
     export function run(): void {
         let qr = new QRCode();
         qr.setTypeNumber(5);
-        qr.setErrorCorrectLevel(ErrorCorrectLevel.L);
+        qr.setErrorCorrectLevel(ErrorCorrectLevel.H);
         qr.addData(new QRNumber('0123')); // Number only
         qr.addData(new QRAlphaNum('AB5678CD')); // Alphabet and Number
         qr.addData(new QR8BitByte('[8BitByte :)]')); // most useful for usual purpose.
