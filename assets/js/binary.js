@@ -1,5 +1,5 @@
-// meta={"simUrl":"https://trg-arcade.userpxt.io/v0.16.52/---simulator","cdnUrl":"https://pxt.azureedge.net","version":"0.0.5","target":"arcade","targetVersion":"0.16.52","repo":"pelikhan/pxt-qrcode"}
-// total=1341045 new=24.93% cached=69.83% other=5.24%
+// meta={"simUrl":"https://trg-arcade.userpxt.io/v0.16.52/---simulator","cdnUrl":"https://pxt.azureedge.net","version":"0.0.6","target":"arcade","targetVersion":"0.16.52","repo":"pelikhan/pxt-qrcode"}
+// total=1375972 new=26.81% cached=68.06% other=5.13%
 (function (ectx) {
 'use strict';
 const runtime = ectx.runtime;
@@ -118,6 +118,7 @@ pxtrt.mapKeyNames = [
  "charHeight",
  "charWidth",
  "chatToNum",
+ "clean",
  "clear",
  "clearObstacles",
  "collisionHandlers",
@@ -167,6 +168,7 @@ pxtrt.mapKeyNames = [
  "gameForeverHandlers",
  "generator",
  "getAt",
+ "getBestCellSize",
  "getBestMaskPattern",
  "getBit",
  "getBuffer",
@@ -175,6 +177,7 @@ pxtrt.mapKeyNames = [
  "getDataCount",
  "getLength",
  "getLengthInBits",
+ "getMinimumQRCode",
  "getMode",
  "getModuleCount",
  "getObstacle",
@@ -414,7 +417,7 @@ const pxsim_pxtrt = pxsim.pxtrt;
 const pxsim_numops = pxsim.numops;
 
 
-function _main___P57491(s) {
+function _main___P66205(s) {
 let r0 = s.r0, step = s.pc;
 s.pc = -1;
 
@@ -2152,21 +2155,30 @@ switch (step) {
     r0 = pxsim_Array__push(s.tmp_160, 16);
     r0 = pxsim_Array__push(s.tmp_1, s.tmp_160);
     globals.RS_BLOCK_TABLE___45339 = (s.tmp_1);
-    s.tmp_0 = test_run__P45637_mk(s);
+    s.tmp_0 = qrcode_encodeString__P45619_mk(s);
+    s.tmp_0.arg0 = "https://arcade.makecode.com";
     s.pc = 30; return s.tmp_0;
   case 30:
     r0 = s.retval;
+    globals.ig___62072 = (r0);
+    s.tmp_0 = sprites_create__P40205_mk(s);
+    s.tmp_0.arg0 = globals.ig___62072;
+    s.tmp_0.arg1 = undefined;
+    s.pc = 31; return s.tmp_0;
+  case 31:
+    r0 = s.retval;
+    globals.sprite___62076 = (r0);
     r0 = undefined;
     return leave(s, r0)
   default: oops()
 } } }
-_main___P57491.info = {"start":0,"length":0,"line":0,"column":0,"endLine":0,"endColumn":0,"fileName":"test.ts","functionName":"<main>","argumentNames":[]}
-_main___P57491.continuations = [  ]
+_main___P66205.info = {"start":0,"length":0,"line":0,"column":0,"endLine":0,"endColumn":0,"fileName":"test.ts","functionName":"<main>","argumentNames":[]}
+_main___P66205.continuations = [  ]
 
-function _main___P57491_mk(s) {
+function _main___P66205_mk(s) {
     checkStack(s.depth);
     return {
-        parent: s, fn: _main___P57491, depth: s.depth + 1,
+        parent: s, fn: _main___P66205, depth: s.depth + 1,
         pc: 0, retval: undefined, r0: undefined, overwrittenPC: false, lambdaArgs: null,
   tmp_0: undefined,
   tmp_1: undefined,
@@ -2902,126 +2914,6 @@ function inline__P41345_mk(s) {
   tmp_9: undefined,
   arg0: undefined,
   arg1: undefined,
-} }
-
-
-
-
-
-function test_run__P45637(s) {
-let r0 = s.r0, step = s.pc;
-s.pc = -1;
-
-
-while (true) {
-if (yieldSteps-- < 0 && maybeYield(s, step, r0)) return null;
-switch (step) {
-  case 0:
-
-    s.qr___45638 = undefined;
-    s.img___45660 = undefined;
-    s.sprite___45663 = undefined;
-    r0 = pxsim_pxtcore_mkClassInstance(qrcode_QRCode__C41924_VT);
-    s.tmp_0 = r0;
-    s.tmp_1 = qrcode_QRCode_constructor__P41955_mk(s);
-    s.tmp_1.arg0 = s.tmp_0;
-    s.pc = 1; return s.tmp_1;
-  case 1:
-    r0 = s.retval;
-    s.qr___45638 = (s.tmp_0);
-    s.tmp_0 = qrcode_QRCode_setTypeNumber__P41926_mk(s);
-    s.tmp_0.arg0 = s.qr___45638;
-    s.tmp_0.arg1 = 5;
-    s.pc = 2; return s.tmp_0;
-  case 2:
-    r0 = s.retval;
-    s.tmp_0 = qrcode_QRCode_setErrorCorrectLevel__P41928_mk(s);
-    s.tmp_0.arg0 = s.qr___45638;
-    s.tmp_0.arg1 = 2;
-    s.pc = 3; return s.tmp_0;
-  case 3:
-    r0 = s.retval;
-    r0 = pxsim_pxtcore_mkClassInstance(qrcode_QRNumber__C42039_VT);
-    s.tmp_0 = r0;
-    s.tmp_1 = qrcode_QRNumber_constructor__P42046_mk(s);
-    s.tmp_1.arg0 = s.tmp_0;
-    s.tmp_1.arg1 = "0123";
-    s.pc = 4; return s.tmp_1;
-  case 4:
-    r0 = s.retval;
-    s.tmp_2 = qrcode_QRCode_addData__P41931_mk(s);
-    s.tmp_2.arg0 = s.qr___45638;
-    s.tmp_2.arg1 = s.tmp_0;
-    s.pc = 5; return s.tmp_2;
-  case 5:
-    r0 = s.retval;
-    r0 = pxsim_pxtcore_mkClassInstance(qrcode_QRAlphaNum__C41817_VT);
-    s.tmp_0 = r0;
-    s.tmp_1 = qrcode_QRAlphaNum_constructor__P41822_mk(s);
-    s.tmp_1.arg0 = s.tmp_0;
-    s.tmp_1.arg1 = "AB5678CD";
-    s.pc = 6; return s.tmp_1;
-  case 6:
-    r0 = s.retval;
-    s.tmp_2 = qrcode_QRCode_addData__P41931_mk(s);
-    s.tmp_2.arg0 = s.qr___45638;
-    s.tmp_2.arg1 = s.tmp_0;
-    s.pc = 7; return s.tmp_2;
-  case 7:
-    r0 = s.retval;
-    r0 = pxsim_pxtcore_mkClassInstance(qrcode_QR8BitByte__C41773_VT);
-    s.tmp_0 = r0;
-    s.tmp_1 = qrcode_QR8BitByte_constructor__P41783_mk(s);
-    s.tmp_1.arg0 = s.tmp_0;
-    s.tmp_1.arg1 = "[8BitByte :)]";
-    s.pc = 8; return s.tmp_1;
-  case 8:
-    r0 = s.retval;
-    s.tmp_2 = qrcode_QRCode_addData__P41931_mk(s);
-    s.tmp_2.arg0 = s.qr___45638;
-    s.tmp_2.arg1 = s.tmp_0;
-    s.pc = 9; return s.tmp_2;
-  case 9:
-    r0 = s.retval;
-    s.tmp_0 = qrcode_QRCode_make__P41937_mk(s);
-    s.tmp_0.arg0 = s.qr___45638;
-    s.pc = 10; return s.tmp_0;
-  case 10:
-    r0 = s.retval;
-    s.tmp_0 = qrcode_QRCode_toImage__P41948_mk(s);
-    s.tmp_0.arg0 = s.qr___45638;
-    s.tmp_0.arg1 = 2;
-    s.tmp_0.arg2 = 4;
-    s.tmp_0.arg3 = 15;
-    s.tmp_0.arg4 = 1;
-    s.pc = 11; return s.tmp_0;
-  case 11:
-    r0 = s.retval;
-    s.img___45660 = (r0);
-    s.tmp_0 = sprites_create__P40205_mk(s);
-    s.tmp_0.arg0 = s.img___45660;
-    s.tmp_0.arg1 = undefined;
-    s.pc = 12; return s.tmp_0;
-  case 12:
-    r0 = s.retval;
-    s.sprite___45663 = (r0);
-    r0 = undefined;
-    return leave(s, r0)
-  default: oops()
-} } }
-test_run__P45637.info = {"start":240,"length":459,"line":8,"column":4,"endLine":20,"endColumn":5,"fileName":"test.ts","functionName":"run","argumentNames":[]}
-
-function test_run__P45637_mk(s) {
-    checkStack(s.depth);
-    return {
-        parent: s, fn: test_run__P45637, depth: s.depth + 1,
-        pc: 0, retval: undefined, r0: undefined, overwrittenPC: false, lambdaArgs: null,
-  tmp_0: undefined,
-  tmp_1: undefined,
-  tmp_2: undefined,
-  qr___45638: undefined,
-  img___45660: undefined,
-  sprite___45663: undefined,
 } }
 
 
@@ -5131,6 +5023,71 @@ function helpers_arrayForEach__P39522_mk(s) {
 
 
 
+function qrcode_encodeString__P45619(s) {
+let r0 = s.r0, step = s.pc;
+s.pc = -1;
+
+
+while (true) {
+if (yieldSteps-- < 0 && maybeYield(s, step, r0)) return null;
+switch (step) {
+  case 0:
+
+    s.qr___45621 = undefined;
+    s.cellsize___45626 = undefined;
+    s.img___45631 = undefined;
+    if (s.lambdaArgs) {
+      s.arg0 = (s.lambdaArgs[0]);
+      s.lambdaArgs = null;
+    }
+    s.tmp_0 = qrcode_QRCode_getMinimumQRCode__P41950_mk(s);
+    s.tmp_0.arg0 = s.arg0;
+    s.tmp_0.arg1 = 0;
+    s.pc = 1; return s.tmp_0;
+  case 1:
+    r0 = s.retval;
+    s.qr___45621 = (r0);
+    s.tmp_0 = qrcode_QRCode_getBestCellSize__P41929_mk(s);
+    s.tmp_0.arg0 = s.qr___45621;
+    s.tmp_0.arg1 = globals.screen___40020;
+    s.tmp_0.arg2 = 4;
+    s.tmp_0.arg3 = 2;
+    s.pc = 2; return s.tmp_0;
+  case 2:
+    r0 = s.retval;
+    s.cellsize___45626 = (r0);
+    s.tmp_0 = qrcode_QRCode_toImage__P41948_mk(s);
+    s.tmp_0.arg0 = s.qr___45621;
+    s.tmp_0.arg1 = s.cellsize___45626;
+    s.tmp_0.arg2 = 4;
+    s.tmp_0.arg3 = 15;
+    s.tmp_0.arg4 = 1;
+    s.pc = 3; return s.tmp_0;
+  case 3:
+    r0 = s.retval;
+    s.img___45631 = (r0);
+    r0 = s.img___45631;
+    return leave(s, r0)
+  default: oops()
+} } }
+qrcode_encodeString__P45619.info = {"start":284,"length":250,"line":11,"column":4,"endLine":16,"endColumn":5,"fileName":"api.ts","functionName":"encodeString","argumentNames":["text"]}
+
+function qrcode_encodeString__P45619_mk(s) {
+    checkStack(s.depth);
+    return {
+        parent: s, fn: qrcode_encodeString__P45619, depth: s.depth + 1,
+        pc: 0, retval: undefined, r0: undefined, overwrittenPC: false, lambdaArgs: null,
+  tmp_0: undefined,
+  qr___45621: undefined,
+  cellsize___45626: undefined,
+  img___45631: undefined,
+  arg0: undefined,
+} }
+
+
+
+
+
 function qrcode_QRCode_toImage__P41948(s) {
 let r0 = s.r0, step = s.pc;
 s.pc = -1;
@@ -5415,6 +5372,312 @@ function qrcode_QRCode_getModuleCount__P41936_mk(s) {
         parent: s, fn: qrcode_QRCode_getModuleCount__P41936, depth: s.depth + 1,
         pc: 0, retval: undefined, r0: undefined, overwrittenPC: false, lambdaArgs: null,
   arg0: undefined,
+} }
+
+
+
+
+
+function qrcode_QRCode_getBestCellSize__P41929(s) {
+let r0 = s.r0, step = s.pc;
+s.pc = -1;
+
+
+while (true) {
+if (yieldSteps-- < 0 && maybeYield(s, step, r0)) return null;
+switch (step) {
+  case 0:
+
+    s.wh___41989 = undefined;
+    s.cellsize___41996 = undefined;
+    if (s.lambdaArgs) {
+      s.arg0 = (s.lambdaArgs[0]);
+      s.arg1 = (s.lambdaArgs[1]);
+      s.arg2 = (s.lambdaArgs[2]);
+      s.arg3 = (s.lambdaArgs[3]);
+      s.lambdaArgs = null;
+    }
+    r0 = s.arg0;
+    if (!checkSubtype(r0, qrcode_QRCode__C41924_VT)) failedCast(r0);
+    s.tmp_0 = Math_min__P39539_mk(s);
+    r0 = pxsim_ImageMethods.width(s.arg1);
+    s.tmp_0.arg0 = r0;
+    r0 = pxsim_ImageMethods.height(s.arg1);
+    s.tmp_0.arg1 = r0;
+    s.pc = 1; return s.tmp_0;
+  case 1:
+    r0 = s.retval;
+    s.wh___41989 = (r0);
+    s.tmp_0 = Math_max__P39538_mk(s);
+    s.tmp_0.arg0 = 1;
+    s.tmp_3 = r0 = s.wh___41989;
+    r0 = (s.arg2 + s.arg3);
+    s.tmp_5 = r0;
+    r0 = (2 * s.tmp_5);
+    s.tmp_4 = r0;
+    r0 = (s.tmp_3 - s.tmp_4);
+    s.tmp_2 = r0;
+    r0 = s.arg0.fields["moduleCount"];
+    s.tmp_6 = r0;
+    r0 = (s.tmp_2 / s.tmp_6);
+    s.tmp_1 = r0;
+    r0 = pxsim.Math_.floor(s.tmp_1);
+    s.tmp_0.arg1 = r0;
+    s.pc = 2; return s.tmp_0;
+  case 2:
+    r0 = s.retval;
+    s.cellsize___41996 = (r0);
+    r0 = s.cellsize___41996;
+    return leave(s, r0)
+  default: oops()
+} } }
+qrcode_QRCode_getBestCellSize__P41929.info = {"start":1500,"length":295,"line":66,"column":4,"endLine":71,"endColumn":5,"fileName":"qrcode.ts","functionName":"getBestCellSize","argumentNames":["this","img","margin","padding"]}
+
+function qrcode_QRCode_getBestCellSize__P41929_mk(s) {
+    checkStack(s.depth);
+    return {
+        parent: s, fn: qrcode_QRCode_getBestCellSize__P41929, depth: s.depth + 1,
+        pc: 0, retval: undefined, r0: undefined, overwrittenPC: false, lambdaArgs: null,
+  tmp_0: undefined,
+  tmp_1: undefined,
+  tmp_2: undefined,
+  tmp_3: undefined,
+  tmp_4: undefined,
+  tmp_5: undefined,
+  tmp_6: undefined,
+  wh___41989: undefined,
+  cellsize___41996: undefined,
+  arg0: undefined,
+  arg1: undefined,
+  arg2: undefined,
+  arg3: undefined,
+} }
+
+
+
+
+
+function qrcode_QRCode_getMinimumQRCode__P41950(s) {
+let r0 = s.r0, step = s.pc;
+s.pc = -1;
+
+
+while (true) {
+if (yieldSteps-- < 0 && maybeYield(s, step, r0)) return null;
+switch (step) {
+  case 0:
+
+    s.qr___43267 = undefined;
+    s.data___43276 = undefined;
+    s.length___43281 = undefined;
+    s.mode___43285 = undefined;
+    s.typeNumber___43289 = undefined;
+    if (s.lambdaArgs) {
+      s.arg0 = (s.lambdaArgs[0]);
+      s.arg1 = (s.lambdaArgs[1]);
+      s.lambdaArgs = null;
+    }
+    r0 = pxsim_pxtcore_mkClassInstance(qrcode_QRCode__C41924_VT);
+    s.tmp_0 = r0;
+    s.tmp_1 = qrcode_QRCode_constructor__P41955_mk(s);
+    s.tmp_1.arg0 = s.tmp_0;
+    s.pc = 5; return s.tmp_1;
+  case 5:
+    r0 = s.retval;
+    s.qr___43267 = (s.tmp_0);
+    s.tmp_0 = qrcode_QRCode_setErrorCorrectLevel__P41928_mk(s);
+    s.tmp_0.arg0 = s.qr___43267;
+    s.tmp_0.arg1 = s.arg1;
+    s.pc = 6; return s.tmp_0;
+  case 6:
+    r0 = s.retval;
+    s.tmp_0 = qrcode_QRCode_add__P41932_mk(s);
+    s.tmp_0.arg0 = s.qr___43267;
+    s.tmp_0.arg1 = s.arg0;
+    s.pc = 7; return s.tmp_0;
+  case 7:
+    r0 = s.retval;
+    r0 = s.qr___43267.fields["qrDataList"];
+    s.tmp_0 = r0;
+    r0 = pxsim_Array__getAt(s.tmp_0, 0);
+    s.data___43276 = (r0);
+    s.tmp_0 = qrcode_QRData__C41775_v0_1_mk(s);
+    s.tmp_0.arg0 = s.data___43276;
+    if (!checkSubtype(s.tmp_0.arg0, qrcode_QRData__C41775_VT)) failedCast(s.tmp_0.arg0);
+    s.tmp_0.fn = s.tmp_0.arg0.vtable.methods.getLength;
+    s.pc = 8; return s.tmp_0;
+  case 8:
+    r0 = s.retval;
+    s.length___43281 = (r0);
+    r0 = s.data___43276.fields["mode"];
+    s.mode___43285 = (r0);
+    s.typeNumber___43289 = (1);
+  case 1:
+    r0 = (s.typeNumber___43289 <= 10);
+    s.tmp_0 = r0;
+    r0 = pxsim_numops_toBoolDecr(s.tmp_0);
+    if (!r0) { step = 4; continue; }
+    s.tmp_2 = r0 = s.length___43281;
+    s.tmp_4 = qrcode_QRUtil_getMaxLength__P43296_mk(s);
+    s.tmp_4.arg0 = s.typeNumber___43289;
+    s.tmp_4.arg1 = s.mode___43285;
+    s.tmp_4.arg2 = s.arg1;
+    s.pc = 9; return s.tmp_4;
+  case 9:
+    r0 = s.retval;
+    s.tmp_3 = r0;
+    r0 = (s.tmp_2 <= s.tmp_3);
+    s.tmp_1 = r0;
+    r0 = pxsim_numops_toBoolDecr(s.tmp_1);
+    if (!r0) { step = 2; continue; }
+    s.tmp_5 = qrcode_QRCode_setTypeNumber__P41926_mk(s);
+    s.tmp_5.arg0 = s.qr___43267;
+    s.tmp_5.arg1 = s.typeNumber___43289;
+    s.pc = 10; return s.tmp_5;
+  case 10:
+    r0 = s.retval;
+    { step = 4; continue; }
+  case 2:
+  case 3:
+    r0 = (s.typeNumber___43289 + 1);
+    s.typeNumber___43289 = (r0);
+    { step = 1; continue; }
+  case 4:
+    s.tmp_0 = qrcode_QRCode_make__P41937_mk(s);
+    s.tmp_0.arg0 = s.qr___43267;
+    s.pc = 11; return s.tmp_0;
+  case 11:
+    r0 = s.retval;
+    s.tmp_0 = qrcode_QRCode_clean__P41949_mk(s);
+    s.tmp_0.arg0 = s.qr___43267;
+    s.pc = 12; return s.tmp_0;
+  case 12:
+    r0 = s.retval;
+    r0 = s.qr___43267;
+    return leave(s, r0)
+  default: oops()
+} } }
+qrcode_QRCode_getMinimumQRCode__P41950.info = {"start":13148,"length":581,"line":517,"column":4,"endLine":537,"endColumn":5,"fileName":"qrcode.ts","functionName":"getMinimumQRCode","argumentNames":["s","errorCorrectionLevel"]}
+
+function qrcode_QRCode_getMinimumQRCode__P41950_mk(s) {
+    checkStack(s.depth);
+    return {
+        parent: s, fn: qrcode_QRCode_getMinimumQRCode__P41950, depth: s.depth + 1,
+        pc: 0, retval: undefined, r0: undefined, overwrittenPC: false, lambdaArgs: null,
+  tmp_0: undefined,
+  tmp_1: undefined,
+  tmp_2: undefined,
+  tmp_3: undefined,
+  tmp_4: undefined,
+  tmp_5: undefined,
+  qr___43267: undefined,
+  data___43276: undefined,
+  length___43281: undefined,
+  mode___43285: undefined,
+  typeNumber___43289: undefined,
+  arg0: undefined,
+  arg1: undefined,
+} }
+
+
+
+
+
+function qrcode_QRCode_clean__P41949(s) {
+let r0 = s.r0, step = s.pc;
+s.pc = -1;
+
+
+while (true) {
+if (yieldSteps-- < 0 && maybeYield(s, step, r0)) return null;
+switch (step) {
+  case 0:
+
+    if (s.lambdaArgs) {
+      s.arg0 = (s.lambdaArgs[0]);
+      s.lambdaArgs = null;
+    }
+    r0 = s.arg0;
+    if (!checkSubtype(r0, qrcode_QRCode__C41924_VT)) failedCast(r0);
+    s.tmp_0 = qrcode_QRMath_clean__P43262_mk(s);
+    s.pc = 1; return s.tmp_0;
+  case 1:
+    r0 = s.retval;
+    s.tmp_0 = qrcode_QRUtil_clean__P43264_mk(s);
+    s.pc = 2; return s.tmp_0;
+  case 2:
+    r0 = s.retval;
+    r0 = undefined;
+    return leave(s, r0)
+  default: oops()
+} } }
+qrcode_QRCode_clean__P41949.info = {"start":13083,"length":59,"line":512,"column":4,"endLine":515,"endColumn":5,"fileName":"qrcode.ts","functionName":"clean","argumentNames":["this"]}
+
+function qrcode_QRCode_clean__P41949_mk(s) {
+    checkStack(s.depth);
+    return {
+        parent: s, fn: qrcode_QRCode_clean__P41949, depth: s.depth + 1,
+        pc: 0, retval: undefined, r0: undefined, overwrittenPC: false, lambdaArgs: null,
+  tmp_0: undefined,
+  arg0: undefined,
+} }
+
+
+
+
+
+function qrcode_QRUtil_clean__P43264(s) {
+let r0 = s.r0, step = s.pc;
+s.pc = -1;
+
+
+while (true) {
+if (yieldSteps-- < 0 && maybeYield(s, step, r0)) return null;
+switch (step) {
+  case 0:
+
+    globals.qrcode_QRUtil_PATTERN_POSITION_TABLE___43590 = (undefined);
+    globals.qrcode_QRUtil_MAX_LENGTH___43593 = (undefined);
+    r0 = undefined;
+    return leave(s, r0)
+  default: oops()
+} } }
+qrcode_QRUtil_clean__P43264.info = {"start":99,"length":115,"line":6,"column":4,"endLine":9,"endColumn":5,"fileName":"qrutil.ts","functionName":"clean","argumentNames":[]}
+
+function qrcode_QRUtil_clean__P43264_mk(s) {
+    checkStack(s.depth);
+    return {
+        parent: s, fn: qrcode_QRUtil_clean__P43264, depth: s.depth + 1,
+        pc: 0, retval: undefined, r0: undefined, overwrittenPC: false, lambdaArgs: null,
+} }
+
+
+
+
+
+function qrcode_QRMath_clean__P43262(s) {
+let r0 = s.r0, step = s.pc;
+s.pc = -1;
+
+
+while (true) {
+if (yieldSteps-- < 0 && maybeYield(s, step, r0)) return null;
+switch (step) {
+  case 0:
+
+    globals.qrcode_QRMath_EXP_TABLE___43492 = (undefined);
+    globals.qrcode_QRMath_LOG_TABLE___43493 = (undefined);
+    r0 = undefined;
+    return leave(s, r0)
+  default: oops()
+} } }
+qrcode_QRMath_clean__P43262.info = {"start":1088,"length":101,"line":47,"column":4,"endLine":50,"endColumn":5,"fileName":"qrmath.ts","functionName":"clean","argumentNames":[]}
+
+function qrcode_QRMath_clean__P43262_mk(s) {
+    checkStack(s.depth);
+    return {
+        parent: s, fn: qrcode_QRMath_clean__P43262, depth: s.depth + 1,
+        pc: 0, retval: undefined, r0: undefined, overwrittenPC: false, lambdaArgs: null,
 } }
 
 
@@ -10046,74 +10309,6 @@ function qrcode_QRData_getLengthInBits__P41780_mk(s) {
 
 
 
-function qrcode_QRData_getLength__P41778(s) {
-let r0 = s.r0, step = s.pc;
-s.pc = -1;
-
-
-while (true) {
-if (yieldSteps-- < 0 && maybeYield(s, step, r0)) return null;
-switch (step) {
-  case 0:
-
-    if (s.lambdaArgs) {
-      s.arg0 = (s.lambdaArgs[0]);
-      s.lambdaArgs = null;
-    }
-    r0 = s.arg0;
-    if (!checkSubtype(r0, qrcode_QRData__C41775_VT)) failedCast(r0);
-    r0 = 0;
-    return leave(s, r0)
-  default: oops()
-} } }
-qrcode_QRData_getLength__P41778.info = {"start":372,"length":50,"line":23,"column":4,"endLine":25,"endColumn":5,"fileName":"qrdata.ts","functionName":"getLength","argumentNames":["this"]}
-
-function qrcode_QRData_getLength__P41778_mk(s) {
-    checkStack(s.depth);
-    return {
-        parent: s, fn: qrcode_QRData_getLength__P41778, depth: s.depth + 1,
-        pc: 0, retval: undefined, r0: undefined, overwrittenPC: false, lambdaArgs: null,
-  arg0: undefined,
-} }
-
-
-
-
-
-function qrcode_QRData_getMode__P41776(s) {
-let r0 = s.r0, step = s.pc;
-s.pc = -1;
-
-
-while (true) {
-if (yieldSteps-- < 0 && maybeYield(s, step, r0)) return null;
-switch (step) {
-  case 0:
-
-    if (s.lambdaArgs) {
-      s.arg0 = (s.lambdaArgs[0]);
-      s.lambdaArgs = null;
-    }
-    r0 = s.arg0;
-    if (!checkSubtype(r0, qrcode_QRData__C41775_VT)) failedCast(r0);
-    r0 = s.arg0.fields["mode"];
-    return leave(s, r0)
-  default: oops()
-} } }
-qrcode_QRData_getMode__P41776.info = {"start":250,"length":54,"line":15,"column":4,"endLine":17,"endColumn":5,"fileName":"qrdata.ts","functionName":"getMode","argumentNames":["this"]}
-
-function qrcode_QRData_getMode__P41776_mk(s) {
-    checkStack(s.depth);
-    return {
-        parent: s, fn: qrcode_QRData_getMode__P41776, depth: s.depth + 1,
-        pc: 0, retval: undefined, r0: undefined, overwrittenPC: false, lambdaArgs: null,
-  arg0: undefined,
-} }
-
-
-
-
-
 function qrcode_BitBuffer_put__P41397(s) {
 let r0 = s.r0, step = s.pc;
 s.pc = -1;
@@ -12152,6 +12347,771 @@ function qrcode_QRCode_setupPositionProbePattern__P41942_mk(s) {
 
 
 
+function qrcode_QRCode_setTypeNumber__P41926(s) {
+let r0 = s.r0, step = s.pc;
+s.pc = -1;
+
+
+while (true) {
+if (yieldSteps-- < 0 && maybeYield(s, step, r0)) return null;
+switch (step) {
+  case 0:
+
+    if (s.lambdaArgs) {
+      s.arg0 = (s.lambdaArgs[0]);
+      s.arg1 = (s.lambdaArgs[1]);
+      s.lambdaArgs = null;
+    }
+    r0 = s.arg0;
+    if (!checkSubtype(r0, qrcode_QRCode__C41924_VT)) failedCast(r0);
+    r0 = (s.arg0).fields["typeNumber"] = (s.arg1);
+    r0 = undefined;
+    return leave(s, r0)
+  default: oops()
+} } }
+qrcode_QRCode_setTypeNumber__P41926.info = {"start":1176,"length":90,"line":54,"column":4,"endLine":56,"endColumn":5,"fileName":"qrcode.ts","functionName":"setTypeNumber","argumentNames":["this","typeNumber"]}
+
+function qrcode_QRCode_setTypeNumber__P41926_mk(s) {
+    checkStack(s.depth);
+    return {
+        parent: s, fn: qrcode_QRCode_setTypeNumber__P41926, depth: s.depth + 1,
+        pc: 0, retval: undefined, r0: undefined, overwrittenPC: false, lambdaArgs: null,
+  arg0: undefined,
+  arg1: undefined,
+} }
+
+
+
+
+
+function qrcode_QRUtil_getMaxLength__P43296(s) {
+let r0 = s.r0, step = s.pc;
+s.pc = -1;
+
+
+while (true) {
+if (yieldSteps-- < 0 && maybeYield(s, step, r0)) return null;
+switch (step) {
+  case 0:
+
+    s.t___43646 = undefined;
+    s.e___43649 = undefined;
+    s.m___43650 = undefined;
+    if (s.lambdaArgs) {
+      s.arg0 = (s.lambdaArgs[0]);
+      s.arg1 = (s.lambdaArgs[1]);
+      s.arg2 = (s.lambdaArgs[2]);
+      s.lambdaArgs = null;
+    }
+    r0 = (s.arg0 - 1);
+    s.t___43646 = (r0);
+    s.e___43649 = (0);
+    s.m___43650 = (0);
+    s.tmp_0 = r0 = s.arg2;
+    r0 = pxsim_pxtcore.switch_eq(1, s.tmp_0);
+    if (r0) { step = 1; continue; }
+    r0 = pxsim_pxtcore.switch_eq(0, s.tmp_0);
+    if (r0) { step = 2; continue; }
+    r0 = pxsim_pxtcore.switch_eq(3, s.tmp_0);
+    if (r0) { step = 3; continue; }
+    r0 = pxsim_pxtcore.switch_eq(2, s.tmp_0);
+    if (r0) { step = 4; continue; }
+    r0 = s.tmp_0;
+    { step = 5; continue; }
+  case 1:
+    s.e___43649 = (0);
+    { step = 6; continue; }
+  case 2:
+    s.e___43649 = (1);
+    { step = 6; continue; }
+  case 3:
+    s.e___43649 = (2);
+    { step = 6; continue; }
+  case 4:
+    s.e___43649 = (3);
+    { step = 6; continue; }
+  case 5:
+    s.tmp_0 = qrcode_panic__P41912_mk(s);
+    if ((s.arg2) && (s.arg2).vtable) {
+    setupResume(s, 15);
+    pxsim_String__stringConv(s.arg2);
+    checkResumeConsumed();
+    return;
+    } else { s.retval = (s.arg2) + ""; }
+  case 15:
+    r0 = s.retval;
+    s.tmp_1 = r0;
+    r0 = pxsim_String__concat("e:", s.tmp_1);
+    s.tmp_0.arg0 = r0;
+    s.pc = 14; return s.tmp_0;
+  case 14:
+    r0 = s.retval;
+  case 6:
+    s.tmp_0 = r0 = s.arg1;
+    r0 = pxsim_pxtcore.switch_eq(1, s.tmp_0);
+    if (r0) { step = 7; continue; }
+    r0 = pxsim_pxtcore.switch_eq(2, s.tmp_0);
+    if (r0) { step = 8; continue; }
+    r0 = pxsim_pxtcore.switch_eq(4, s.tmp_0);
+    if (r0) { step = 9; continue; }
+    r0 = s.tmp_0;
+    { step = 10; continue; }
+  case 7:
+    s.m___43650 = (0);
+    { step = 11; continue; }
+  case 8:
+    s.m___43650 = (1);
+    { step = 11; continue; }
+  case 9:
+    s.m___43650 = (2);
+    { step = 11; continue; }
+  case 10:
+    s.tmp_0 = qrcode_panic__P41912_mk(s);
+    if ((s.arg1) && (s.arg1).vtable) {
+    setupResume(s, 17);
+    pxsim_String__stringConv(s.arg1);
+    checkResumeConsumed();
+    return;
+    } else { s.retval = (s.arg1) + ""; }
+  case 17:
+    r0 = s.retval;
+    s.tmp_1 = r0;
+    r0 = pxsim_String__concat("m:", s.tmp_1);
+    s.tmp_0.arg0 = r0;
+    s.pc = 16; return s.tmp_0;
+  case 16:
+    r0 = s.retval;
+  case 11:
+    r0 = pxsim_numops_toBoolDecr(globals.qrcode_QRUtil_MAX_LENGTH___43593);
+    s.tmp_1 = r0;
+    r0 = pxsim_Boolean__bang(s.tmp_1);
+    s.tmp_0 = r0;
+    r0 = pxsim_numops_toBoolDecr(s.tmp_0);
+    if (!r0) { step = 12; continue; }
+    r0 = pxsim_Array__mk();
+    s.tmp_2 = r0;
+    r0 = pxsim_Array__push(s.tmp_2, 41);
+    r0 = pxsim_Array__push(s.tmp_2, 25);
+    r0 = pxsim_Array__push(s.tmp_2, 17);
+    r0 = pxsim_Array__push(s.tmp_2, 10);
+    r0 = pxsim_Array__mk();
+    s.tmp_3 = r0;
+    r0 = pxsim_Array__push(s.tmp_3, s.tmp_2);
+    r0 = pxsim_Array__mk();
+    s.tmp_4 = r0;
+    r0 = pxsim_Array__push(s.tmp_4, 34);
+    r0 = pxsim_Array__push(s.tmp_4, 20);
+    r0 = pxsim_Array__push(s.tmp_4, 14);
+    r0 = pxsim_Array__push(s.tmp_4, 8);
+    r0 = pxsim_Array__push(s.tmp_3, s.tmp_4);
+    r0 = pxsim_Array__mk();
+    s.tmp_5 = r0;
+    r0 = pxsim_Array__push(s.tmp_5, 27);
+    r0 = pxsim_Array__push(s.tmp_5, 16);
+    r0 = pxsim_Array__push(s.tmp_5, 11);
+    r0 = pxsim_Array__push(s.tmp_5, 7);
+    r0 = pxsim_Array__push(s.tmp_3, s.tmp_5);
+    r0 = pxsim_Array__mk();
+    s.tmp_6 = r0;
+    r0 = pxsim_Array__push(s.tmp_6, 17);
+    r0 = pxsim_Array__push(s.tmp_6, 10);
+    r0 = pxsim_Array__push(s.tmp_6, 7);
+    r0 = pxsim_Array__push(s.tmp_6, 4);
+    r0 = pxsim_Array__push(s.tmp_3, s.tmp_6);
+    r0 = pxsim_Array__mk();
+    s.tmp_7 = r0;
+    r0 = pxsim_Array__push(s.tmp_7, s.tmp_3);
+    r0 = pxsim_Array__mk();
+    s.tmp_8 = r0;
+    r0 = pxsim_Array__push(s.tmp_8, 77);
+    r0 = pxsim_Array__push(s.tmp_8, 47);
+    r0 = pxsim_Array__push(s.tmp_8, 32);
+    r0 = pxsim_Array__push(s.tmp_8, 20);
+    r0 = pxsim_Array__mk();
+    s.tmp_9 = r0;
+    r0 = pxsim_Array__push(s.tmp_9, s.tmp_8);
+    r0 = pxsim_Array__mk();
+    s.tmp_10 = r0;
+    r0 = pxsim_Array__push(s.tmp_10, 63);
+    r0 = pxsim_Array__push(s.tmp_10, 38);
+    r0 = pxsim_Array__push(s.tmp_10, 26);
+    r0 = pxsim_Array__push(s.tmp_10, 16);
+    r0 = pxsim_Array__push(s.tmp_9, s.tmp_10);
+    r0 = pxsim_Array__mk();
+    s.tmp_11 = r0;
+    r0 = pxsim_Array__push(s.tmp_11, 48);
+    r0 = pxsim_Array__push(s.tmp_11, 29);
+    r0 = pxsim_Array__push(s.tmp_11, 20);
+    r0 = pxsim_Array__push(s.tmp_11, 12);
+    r0 = pxsim_Array__push(s.tmp_9, s.tmp_11);
+    r0 = pxsim_Array__mk();
+    s.tmp_12 = r0;
+    r0 = pxsim_Array__push(s.tmp_12, 34);
+    r0 = pxsim_Array__push(s.tmp_12, 20);
+    r0 = pxsim_Array__push(s.tmp_12, 14);
+    r0 = pxsim_Array__push(s.tmp_12, 8);
+    r0 = pxsim_Array__push(s.tmp_9, s.tmp_12);
+    r0 = pxsim_Array__push(s.tmp_7, s.tmp_9);
+    r0 = pxsim_Array__mk();
+    s.tmp_13 = r0;
+    r0 = pxsim_Array__push(s.tmp_13, 127);
+    r0 = pxsim_Array__push(s.tmp_13, 77);
+    r0 = pxsim_Array__push(s.tmp_13, 53);
+    r0 = pxsim_Array__push(s.tmp_13, 32);
+    r0 = pxsim_Array__mk();
+    s.tmp_14 = r0;
+    r0 = pxsim_Array__push(s.tmp_14, s.tmp_13);
+    r0 = pxsim_Array__mk();
+    s.tmp_15 = r0;
+    r0 = pxsim_Array__push(s.tmp_15, 101);
+    r0 = pxsim_Array__push(s.tmp_15, 61);
+    r0 = pxsim_Array__push(s.tmp_15, 42);
+    r0 = pxsim_Array__push(s.tmp_15, 26);
+    r0 = pxsim_Array__push(s.tmp_14, s.tmp_15);
+    r0 = pxsim_Array__mk();
+    s.tmp_16 = r0;
+    r0 = pxsim_Array__push(s.tmp_16, 77);
+    r0 = pxsim_Array__push(s.tmp_16, 47);
+    r0 = pxsim_Array__push(s.tmp_16, 32);
+    r0 = pxsim_Array__push(s.tmp_16, 20);
+    r0 = pxsim_Array__push(s.tmp_14, s.tmp_16);
+    r0 = pxsim_Array__mk();
+    s.tmp_17 = r0;
+    r0 = pxsim_Array__push(s.tmp_17, 58);
+    r0 = pxsim_Array__push(s.tmp_17, 35);
+    r0 = pxsim_Array__push(s.tmp_17, 24);
+    r0 = pxsim_Array__push(s.tmp_17, 15);
+    r0 = pxsim_Array__push(s.tmp_14, s.tmp_17);
+    r0 = pxsim_Array__push(s.tmp_7, s.tmp_14);
+    r0 = pxsim_Array__mk();
+    s.tmp_18 = r0;
+    r0 = pxsim_Array__push(s.tmp_18, 187);
+    r0 = pxsim_Array__push(s.tmp_18, 114);
+    r0 = pxsim_Array__push(s.tmp_18, 78);
+    r0 = pxsim_Array__push(s.tmp_18, 48);
+    r0 = pxsim_Array__mk();
+    s.tmp_19 = r0;
+    r0 = pxsim_Array__push(s.tmp_19, s.tmp_18);
+    r0 = pxsim_Array__mk();
+    s.tmp_20 = r0;
+    r0 = pxsim_Array__push(s.tmp_20, 149);
+    r0 = pxsim_Array__push(s.tmp_20, 90);
+    r0 = pxsim_Array__push(s.tmp_20, 62);
+    r0 = pxsim_Array__push(s.tmp_20, 38);
+    r0 = pxsim_Array__push(s.tmp_19, s.tmp_20);
+    r0 = pxsim_Array__mk();
+    s.tmp_21 = r0;
+    r0 = pxsim_Array__push(s.tmp_21, 111);
+    r0 = pxsim_Array__push(s.tmp_21, 67);
+    r0 = pxsim_Array__push(s.tmp_21, 46);
+    r0 = pxsim_Array__push(s.tmp_21, 28);
+    r0 = pxsim_Array__push(s.tmp_19, s.tmp_21);
+    r0 = pxsim_Array__mk();
+    s.tmp_22 = r0;
+    r0 = pxsim_Array__push(s.tmp_22, 82);
+    r0 = pxsim_Array__push(s.tmp_22, 50);
+    r0 = pxsim_Array__push(s.tmp_22, 34);
+    r0 = pxsim_Array__push(s.tmp_22, 21);
+    r0 = pxsim_Array__push(s.tmp_19, s.tmp_22);
+    r0 = pxsim_Array__push(s.tmp_7, s.tmp_19);
+    r0 = pxsim_Array__mk();
+    s.tmp_23 = r0;
+    r0 = pxsim_Array__push(s.tmp_23, 255);
+    r0 = pxsim_Array__push(s.tmp_23, 154);
+    r0 = pxsim_Array__push(s.tmp_23, 106);
+    r0 = pxsim_Array__push(s.tmp_23, 65);
+    r0 = pxsim_Array__mk();
+    s.tmp_24 = r0;
+    r0 = pxsim_Array__push(s.tmp_24, s.tmp_23);
+    r0 = pxsim_Array__mk();
+    s.tmp_25 = r0;
+    r0 = pxsim_Array__push(s.tmp_25, 202);
+    r0 = pxsim_Array__push(s.tmp_25, 122);
+    r0 = pxsim_Array__push(s.tmp_25, 84);
+    r0 = pxsim_Array__push(s.tmp_25, 52);
+    r0 = pxsim_Array__push(s.tmp_24, s.tmp_25);
+    r0 = pxsim_Array__mk();
+    s.tmp_26 = r0;
+    r0 = pxsim_Array__push(s.tmp_26, 144);
+    r0 = pxsim_Array__push(s.tmp_26, 87);
+    r0 = pxsim_Array__push(s.tmp_26, 60);
+    r0 = pxsim_Array__push(s.tmp_26, 37);
+    r0 = pxsim_Array__push(s.tmp_24, s.tmp_26);
+    r0 = pxsim_Array__mk();
+    s.tmp_27 = r0;
+    r0 = pxsim_Array__push(s.tmp_27, 106);
+    r0 = pxsim_Array__push(s.tmp_27, 64);
+    r0 = pxsim_Array__push(s.tmp_27, 44);
+    r0 = pxsim_Array__push(s.tmp_27, 27);
+    r0 = pxsim_Array__push(s.tmp_24, s.tmp_27);
+    r0 = pxsim_Array__push(s.tmp_7, s.tmp_24);
+    r0 = pxsim_Array__mk();
+    s.tmp_28 = r0;
+    r0 = pxsim_Array__push(s.tmp_28, 322);
+    r0 = pxsim_Array__push(s.tmp_28, 195);
+    r0 = pxsim_Array__push(s.tmp_28, 134);
+    r0 = pxsim_Array__push(s.tmp_28, 82);
+    r0 = pxsim_Array__mk();
+    s.tmp_29 = r0;
+    r0 = pxsim_Array__push(s.tmp_29, s.tmp_28);
+    r0 = pxsim_Array__mk();
+    s.tmp_30 = r0;
+    r0 = pxsim_Array__push(s.tmp_30, 255);
+    r0 = pxsim_Array__push(s.tmp_30, 154);
+    r0 = pxsim_Array__push(s.tmp_30, 106);
+    r0 = pxsim_Array__push(s.tmp_30, 65);
+    r0 = pxsim_Array__push(s.tmp_29, s.tmp_30);
+    r0 = pxsim_Array__mk();
+    s.tmp_31 = r0;
+    r0 = pxsim_Array__push(s.tmp_31, 178);
+    r0 = pxsim_Array__push(s.tmp_31, 108);
+    r0 = pxsim_Array__push(s.tmp_31, 74);
+    r0 = pxsim_Array__push(s.tmp_31, 45);
+    r0 = pxsim_Array__push(s.tmp_29, s.tmp_31);
+    r0 = pxsim_Array__mk();
+    s.tmp_32 = r0;
+    r0 = pxsim_Array__push(s.tmp_32, 139);
+    r0 = pxsim_Array__push(s.tmp_32, 84);
+    r0 = pxsim_Array__push(s.tmp_32, 58);
+    r0 = pxsim_Array__push(s.tmp_32, 36);
+    r0 = pxsim_Array__push(s.tmp_29, s.tmp_32);
+    r0 = pxsim_Array__push(s.tmp_7, s.tmp_29);
+    r0 = pxsim_Array__mk();
+    s.tmp_33 = r0;
+    r0 = pxsim_Array__push(s.tmp_33, 370);
+    r0 = pxsim_Array__push(s.tmp_33, 224);
+    r0 = pxsim_Array__push(s.tmp_33, 154);
+    r0 = pxsim_Array__push(s.tmp_33, 95);
+    r0 = pxsim_Array__mk();
+    s.tmp_34 = r0;
+    r0 = pxsim_Array__push(s.tmp_34, s.tmp_33);
+    r0 = pxsim_Array__mk();
+    s.tmp_35 = r0;
+    r0 = pxsim_Array__push(s.tmp_35, 293);
+    r0 = pxsim_Array__push(s.tmp_35, 178);
+    r0 = pxsim_Array__push(s.tmp_35, 122);
+    r0 = pxsim_Array__push(s.tmp_35, 75);
+    r0 = pxsim_Array__push(s.tmp_34, s.tmp_35);
+    r0 = pxsim_Array__mk();
+    s.tmp_36 = r0;
+    r0 = pxsim_Array__push(s.tmp_36, 207);
+    r0 = pxsim_Array__push(s.tmp_36, 125);
+    r0 = pxsim_Array__push(s.tmp_36, 86);
+    r0 = pxsim_Array__push(s.tmp_36, 53);
+    r0 = pxsim_Array__push(s.tmp_34, s.tmp_36);
+    r0 = pxsim_Array__mk();
+    s.tmp_37 = r0;
+    r0 = pxsim_Array__push(s.tmp_37, 154);
+    r0 = pxsim_Array__push(s.tmp_37, 93);
+    r0 = pxsim_Array__push(s.tmp_37, 64);
+    r0 = pxsim_Array__push(s.tmp_37, 39);
+    r0 = pxsim_Array__push(s.tmp_34, s.tmp_37);
+    r0 = pxsim_Array__push(s.tmp_7, s.tmp_34);
+    r0 = pxsim_Array__mk();
+    s.tmp_38 = r0;
+    r0 = pxsim_Array__push(s.tmp_38, 461);
+    r0 = pxsim_Array__push(s.tmp_38, 279);
+    r0 = pxsim_Array__push(s.tmp_38, 192);
+    r0 = pxsim_Array__push(s.tmp_38, 118);
+    r0 = pxsim_Array__mk();
+    s.tmp_39 = r0;
+    r0 = pxsim_Array__push(s.tmp_39, s.tmp_38);
+    r0 = pxsim_Array__mk();
+    s.tmp_40 = r0;
+    r0 = pxsim_Array__push(s.tmp_40, 365);
+    r0 = pxsim_Array__push(s.tmp_40, 221);
+    r0 = pxsim_Array__push(s.tmp_40, 152);
+    r0 = pxsim_Array__push(s.tmp_40, 93);
+    r0 = pxsim_Array__push(s.tmp_39, s.tmp_40);
+    r0 = pxsim_Array__mk();
+    s.tmp_41 = r0;
+    r0 = pxsim_Array__push(s.tmp_41, 259);
+    r0 = pxsim_Array__push(s.tmp_41, 157);
+    r0 = pxsim_Array__push(s.tmp_41, 108);
+    r0 = pxsim_Array__push(s.tmp_41, 66);
+    r0 = pxsim_Array__push(s.tmp_39, s.tmp_41);
+    r0 = pxsim_Array__mk();
+    s.tmp_42 = r0;
+    r0 = pxsim_Array__push(s.tmp_42, 202);
+    r0 = pxsim_Array__push(s.tmp_42, 122);
+    r0 = pxsim_Array__push(s.tmp_42, 84);
+    r0 = pxsim_Array__push(s.tmp_42, 52);
+    r0 = pxsim_Array__push(s.tmp_39, s.tmp_42);
+    r0 = pxsim_Array__push(s.tmp_7, s.tmp_39);
+    r0 = pxsim_Array__mk();
+    s.tmp_43 = r0;
+    r0 = pxsim_Array__push(s.tmp_43, 552);
+    r0 = pxsim_Array__push(s.tmp_43, 335);
+    r0 = pxsim_Array__push(s.tmp_43, 230);
+    r0 = pxsim_Array__push(s.tmp_43, 141);
+    r0 = pxsim_Array__mk();
+    s.tmp_44 = r0;
+    r0 = pxsim_Array__push(s.tmp_44, s.tmp_43);
+    r0 = pxsim_Array__mk();
+    s.tmp_45 = r0;
+    r0 = pxsim_Array__push(s.tmp_45, 432);
+    r0 = pxsim_Array__push(s.tmp_45, 262);
+    r0 = pxsim_Array__push(s.tmp_45, 180);
+    r0 = pxsim_Array__push(s.tmp_45, 111);
+    r0 = pxsim_Array__push(s.tmp_44, s.tmp_45);
+    r0 = pxsim_Array__mk();
+    s.tmp_46 = r0;
+    r0 = pxsim_Array__push(s.tmp_46, 312);
+    r0 = pxsim_Array__push(s.tmp_46, 189);
+    r0 = pxsim_Array__push(s.tmp_46, 130);
+    r0 = pxsim_Array__push(s.tmp_46, 80);
+    r0 = pxsim_Array__push(s.tmp_44, s.tmp_46);
+    r0 = pxsim_Array__mk();
+    s.tmp_47 = r0;
+    r0 = pxsim_Array__push(s.tmp_47, 235);
+    r0 = pxsim_Array__push(s.tmp_47, 143);
+    r0 = pxsim_Array__push(s.tmp_47, 98);
+    r0 = pxsim_Array__push(s.tmp_47, 60);
+    r0 = pxsim_Array__push(s.tmp_44, s.tmp_47);
+    r0 = pxsim_Array__push(s.tmp_7, s.tmp_44);
+    r0 = pxsim_Array__mk();
+    s.tmp_48 = r0;
+    r0 = pxsim_Array__push(s.tmp_48, 652);
+    r0 = pxsim_Array__push(s.tmp_48, 395);
+    r0 = pxsim_Array__push(s.tmp_48, 271);
+    r0 = pxsim_Array__push(s.tmp_48, 167);
+    r0 = pxsim_Array__mk();
+    s.tmp_49 = r0;
+    r0 = pxsim_Array__push(s.tmp_49, s.tmp_48);
+    r0 = pxsim_Array__mk();
+    s.tmp_50 = r0;
+    r0 = pxsim_Array__push(s.tmp_50, 513);
+    r0 = pxsim_Array__push(s.tmp_50, 311);
+    r0 = pxsim_Array__push(s.tmp_50, 213);
+    r0 = pxsim_Array__push(s.tmp_50, 131);
+    r0 = pxsim_Array__push(s.tmp_49, s.tmp_50);
+    r0 = pxsim_Array__mk();
+    s.tmp_51 = r0;
+    r0 = pxsim_Array__push(s.tmp_51, 364);
+    r0 = pxsim_Array__push(s.tmp_51, 221);
+    r0 = pxsim_Array__push(s.tmp_51, 151);
+    r0 = pxsim_Array__push(s.tmp_51, 93);
+    r0 = pxsim_Array__push(s.tmp_49, s.tmp_51);
+    r0 = pxsim_Array__mk();
+    s.tmp_52 = r0;
+    r0 = pxsim_Array__push(s.tmp_52, 288);
+    r0 = pxsim_Array__push(s.tmp_52, 174);
+    r0 = pxsim_Array__push(s.tmp_52, 119);
+    r0 = pxsim_Array__push(s.tmp_52, 74);
+    r0 = pxsim_Array__push(s.tmp_49, s.tmp_52);
+    r0 = pxsim_Array__push(s.tmp_7, s.tmp_49);
+    globals.qrcode_QRUtil_MAX_LENGTH___43593 = (s.tmp_7);
+  case 12:
+  case 13:
+    r0 = pxsim_Array__getAt(globals.qrcode_QRUtil_MAX_LENGTH___43593, s.t___43646);
+    s.tmp_1 = r0;
+    r0 = pxsim_Array__getAt(s.tmp_1, s.e___43649);
+    s.tmp_0 = r0;
+    r0 = pxsim_Array__getAt(s.tmp_0, s.m___43650);
+    return leave(s, r0)
+  default: oops()
+} } }
+qrcode_QRUtil_getMaxLength__P43296.info = {"start":1756,"length":1763,"line":60,"column":4,"endLine":102,"endColumn":5,"fileName":"qrutil.ts","functionName":"getMaxLength","argumentNames":["typeNumber","mode","errorCorrectLevel"]}
+
+function qrcode_QRUtil_getMaxLength__P43296_mk(s) {
+    checkStack(s.depth);
+    return {
+        parent: s, fn: qrcode_QRUtil_getMaxLength__P43296, depth: s.depth + 1,
+        pc: 0, retval: undefined, r0: undefined, overwrittenPC: false, lambdaArgs: null,
+  tmp_0: undefined,
+  tmp_1: undefined,
+  tmp_2: undefined,
+  tmp_3: undefined,
+  tmp_4: undefined,
+  tmp_5: undefined,
+  tmp_6: undefined,
+  tmp_7: undefined,
+  tmp_8: undefined,
+  tmp_9: undefined,
+  tmp_10: undefined,
+  tmp_11: undefined,
+  tmp_12: undefined,
+  tmp_13: undefined,
+  tmp_14: undefined,
+  tmp_15: undefined,
+  tmp_16: undefined,
+  tmp_17: undefined,
+  tmp_18: undefined,
+  tmp_19: undefined,
+  tmp_20: undefined,
+  tmp_21: undefined,
+  tmp_22: undefined,
+  tmp_23: undefined,
+  tmp_24: undefined,
+  tmp_25: undefined,
+  tmp_26: undefined,
+  tmp_27: undefined,
+  tmp_28: undefined,
+  tmp_29: undefined,
+  tmp_30: undefined,
+  tmp_31: undefined,
+  tmp_32: undefined,
+  tmp_33: undefined,
+  tmp_34: undefined,
+  tmp_35: undefined,
+  tmp_36: undefined,
+  tmp_37: undefined,
+  tmp_38: undefined,
+  tmp_39: undefined,
+  tmp_40: undefined,
+  tmp_41: undefined,
+  tmp_42: undefined,
+  tmp_43: undefined,
+  tmp_44: undefined,
+  tmp_45: undefined,
+  tmp_46: undefined,
+  tmp_47: undefined,
+  tmp_48: undefined,
+  tmp_49: undefined,
+  tmp_50: undefined,
+  tmp_51: undefined,
+  tmp_52: undefined,
+  t___43646: undefined,
+  e___43649: undefined,
+  m___43650: undefined,
+  arg0: undefined,
+  arg1: undefined,
+  arg2: undefined,
+} }
+
+
+
+
+
+function qrcode_QRData_getMode__P41776(s) {
+let r0 = s.r0, step = s.pc;
+s.pc = -1;
+
+
+while (true) {
+if (yieldSteps-- < 0 && maybeYield(s, step, r0)) return null;
+switch (step) {
+  case 0:
+
+    if (s.lambdaArgs) {
+      s.arg0 = (s.lambdaArgs[0]);
+      s.lambdaArgs = null;
+    }
+    r0 = s.arg0;
+    if (!checkSubtype(r0, qrcode_QRData__C41775_VT)) failedCast(r0);
+    r0 = s.arg0.fields["mode"];
+    return leave(s, r0)
+  default: oops()
+} } }
+qrcode_QRData_getMode__P41776.info = {"start":250,"length":54,"line":15,"column":4,"endLine":17,"endColumn":5,"fileName":"qrdata.ts","functionName":"getMode","argumentNames":["this"]}
+
+function qrcode_QRData_getMode__P41776_mk(s) {
+    checkStack(s.depth);
+    return {
+        parent: s, fn: qrcode_QRData_getMode__P41776, depth: s.depth + 1,
+        pc: 0, retval: undefined, r0: undefined, overwrittenPC: false, lambdaArgs: null,
+  arg0: undefined,
+} }
+
+
+
+
+
+function qrcode_QRData_getLength__P41778(s) {
+let r0 = s.r0, step = s.pc;
+s.pc = -1;
+
+
+while (true) {
+if (yieldSteps-- < 0 && maybeYield(s, step, r0)) return null;
+switch (step) {
+  case 0:
+
+    if (s.lambdaArgs) {
+      s.arg0 = (s.lambdaArgs[0]);
+      s.lambdaArgs = null;
+    }
+    r0 = s.arg0;
+    if (!checkSubtype(r0, qrcode_QRData__C41775_VT)) failedCast(r0);
+    r0 = 0;
+    return leave(s, r0)
+  default: oops()
+} } }
+qrcode_QRData_getLength__P41778.info = {"start":372,"length":50,"line":23,"column":4,"endLine":25,"endColumn":5,"fileName":"qrdata.ts","functionName":"getLength","argumentNames":["this"]}
+
+function qrcode_QRData_getLength__P41778_mk(s) {
+    checkStack(s.depth);
+    return {
+        parent: s, fn: qrcode_QRData_getLength__P41778, depth: s.depth + 1,
+        pc: 0, retval: undefined, r0: undefined, overwrittenPC: false, lambdaArgs: null,
+  arg0: undefined,
+} }
+
+
+
+
+
+function qrcode_QRCode_getData__P41934(s) {
+let r0 = s.r0, step = s.pc;
+s.pc = -1;
+
+
+while (true) {
+if (yieldSteps-- < 0 && maybeYield(s, step, r0)) return null;
+switch (step) {
+  case 0:
+
+    if (s.lambdaArgs) {
+      s.arg0 = (s.lambdaArgs[0]);
+      s.arg1 = (s.lambdaArgs[1]);
+      s.lambdaArgs = null;
+    }
+    r0 = s.arg0;
+    if (!checkSubtype(r0, qrcode_QRCode__C41924_VT)) failedCast(r0);
+    r0 = s.arg0.fields["qrDataList"];
+    s.tmp_0 = r0;
+    r0 = pxsim_Array__getAt(s.tmp_0, s.arg1);
+    return leave(s, r0)
+  default: oops()
+} } }
+qrcode_QRCode_getData__P41934.info = {"start":2495,"length":83,"line":105,"column":4,"endLine":107,"endColumn":5,"fileName":"qrcode.ts","functionName":"getData","argumentNames":["this","index"]}
+
+function qrcode_QRCode_getData__P41934_mk(s) {
+    checkStack(s.depth);
+    return {
+        parent: s, fn: qrcode_QRCode_getData__P41934, depth: s.depth + 1,
+        pc: 0, retval: undefined, r0: undefined, overwrittenPC: false, lambdaArgs: null,
+  tmp_0: undefined,
+  arg0: undefined,
+  arg1: undefined,
+} }
+
+
+
+
+
+function qrcode_QRCode_add__P41932(s) {
+let r0 = s.r0, step = s.pc;
+s.pc = -1;
+
+
+while (true) {
+if (yieldSteps-- < 0 && maybeYield(s, step, r0)) return null;
+switch (step) {
+  case 0:
+
+    s.mode___42026 = undefined;
+    if (s.lambdaArgs) {
+      s.arg0 = (s.lambdaArgs[0]);
+      s.arg1 = (s.lambdaArgs[1]);
+      s.lambdaArgs = null;
+    }
+    r0 = s.arg0;
+    if (!checkSubtype(r0, qrcode_QRCode__C41924_VT)) failedCast(r0);
+    s.tmp_0 = qrcode_QRUtil_getMode__P42030_mk(s);
+    s.tmp_0.arg0 = s.arg1;
+    s.pc = 6; return s.tmp_0;
+  case 6:
+    r0 = s.retval;
+    s.mode___42026 = (r0);
+    s.tmp_0 = r0 = s.mode___42026;
+    r0 = pxsim_pxtcore.switch_eq(1, s.tmp_0);
+    if (r0) { step = 1; continue; }
+    r0 = pxsim_pxtcore.switch_eq(2, s.tmp_0);
+    if (r0) { step = 2; continue; }
+    r0 = pxsim_pxtcore.switch_eq(4, s.tmp_0);
+    if (r0) { step = 3; continue; }
+    r0 = s.tmp_0;
+    { step = 4; continue; }
+  case 1:
+    r0 = pxsim_pxtcore_mkClassInstance(qrcode_QRNumber__C42039_VT);
+    s.tmp_1 = r0;
+    s.tmp_2 = qrcode_QRNumber_constructor__P42046_mk(s);
+    s.tmp_2.arg0 = s.tmp_1;
+    s.tmp_2.arg1 = s.arg1;
+    s.pc = 7; return s.tmp_2;
+  case 7:
+    r0 = s.retval;
+    s.tmp_3 = qrcode_QRCode_addData__P41931_mk(s);
+    s.tmp_3.arg0 = s.arg0;
+    s.tmp_3.arg1 = s.tmp_1;
+    s.pc = 8; return s.tmp_3;
+  case 8:
+    r0 = s.retval;
+    { step = 5; continue; }
+  case 2:
+    r0 = pxsim_pxtcore_mkClassInstance(qrcode_QRAlphaNum__C41817_VT);
+    s.tmp_0 = r0;
+    s.tmp_1 = qrcode_QRAlphaNum_constructor__P41822_mk(s);
+    s.tmp_1.arg0 = s.tmp_0;
+    s.tmp_1.arg1 = s.arg1;
+    s.pc = 9; return s.tmp_1;
+  case 9:
+    r0 = s.retval;
+    s.tmp_2 = qrcode_QRCode_addData__P41931_mk(s);
+    s.tmp_2.arg0 = s.arg0;
+    s.tmp_2.arg1 = s.tmp_0;
+    s.pc = 10; return s.tmp_2;
+  case 10:
+    r0 = s.retval;
+    { step = 5; continue; }
+  case 3:
+    r0 = pxsim_pxtcore_mkClassInstance(qrcode_QR8BitByte__C41773_VT);
+    s.tmp_0 = r0;
+    s.tmp_1 = qrcode_QR8BitByte_constructor__P41783_mk(s);
+    s.tmp_1.arg0 = s.tmp_0;
+    s.tmp_1.arg1 = s.arg1;
+    s.pc = 11; return s.tmp_1;
+  case 11:
+    r0 = s.retval;
+    s.tmp_2 = qrcode_QRCode_addData__P41931_mk(s);
+    s.tmp_2.arg0 = s.arg0;
+    s.tmp_2.arg1 = s.tmp_0;
+    s.pc = 12; return s.tmp_2;
+  case 12:
+    r0 = s.retval;
+    { step = 5; continue; }
+  case 4:
+    s.tmp_0 = qrcode_panic__P41912_mk(s);
+    if ((s.mode___42026) && (s.mode___42026).vtable) {
+    setupResume(s, 14);
+    pxsim_String__stringConv(s.mode___42026);
+    checkResumeConsumed();
+    return;
+    } else { s.retval = (s.mode___42026) + ""; }
+  case 14:
+    r0 = s.retval;
+    s.tmp_1 = r0;
+    r0 = pxsim_String__concat("mode:", s.tmp_1);
+    s.tmp_0.arg0 = r0;
+    s.pc = 13; return s.tmp_0;
+  case 13:
+    r0 = s.retval;
+  case 5:
+    r0 = undefined;
+    return leave(s, r0)
+  default: oops()
+} } }
+qrcode_QRCode_add__P41932.info = {"start":1953,"length":455,"line":81,"column":4,"endLine":99,"endColumn":5,"fileName":"qrcode.ts","functionName":"add","argumentNames":["this","data"]}
+
+function qrcode_QRCode_add__P41932_mk(s) {
+    checkStack(s.depth);
+    return {
+        parent: s, fn: qrcode_QRCode_add__P41932, depth: s.depth + 1,
+        pc: 0, retval: undefined, r0: undefined, overwrittenPC: false, lambdaArgs: null,
+  tmp_0: undefined,
+  tmp_1: undefined,
+  tmp_2: undefined,
+  tmp_3: undefined,
+  mode___42026: undefined,
+  arg0: undefined,
+  arg1: undefined,
+} }
+
+
+
+
+
 function qrcode_QR8BitByte_constructor__P41783(s) {
 let r0 = s.r0, step = s.pc;
 s.pc = -1;
@@ -12364,6 +13324,263 @@ function qrcode_QRCode_addData__P41931_mk(s) {
 
 
 
+function qrcode_QRUtil_getMode__P42030(s) {
+let r0 = s.r0, step = s.pc;
+s.pc = -1;
+
+
+while (true) {
+if (yieldSteps-- < 0 && maybeYield(s, step, r0)) return null;
+switch (step) {
+  case 0:
+
+    if (s.lambdaArgs) {
+      s.arg0 = (s.lambdaArgs[0]);
+      s.lambdaArgs = null;
+    }
+    s.tmp_1 = qrcode_QRUtil_isAlphaNum__P43587_mk(s);
+    s.tmp_1.arg0 = s.arg0;
+    s.pc = 6; return s.tmp_1;
+  case 6:
+    r0 = s.retval;
+    s.tmp_0 = r0;
+    r0 = pxsim_numops_toBoolDecr(s.tmp_0);
+    if (!r0) { step = 3; continue; }
+    s.tmp_3 = qrcode_QRUtil_isNumber__P43586_mk(s);
+    s.tmp_3.arg0 = s.arg0;
+    s.pc = 7; return s.tmp_3;
+  case 7:
+    r0 = s.retval;
+    s.tmp_2 = r0;
+    r0 = pxsim_numops_toBoolDecr(s.tmp_2);
+    if (!r0) { step = 1; continue; }
+    r0 = 1;
+    { step = 5; continue; }
+  case 1:
+  case 2:
+    r0 = 2;
+    { step = 5; continue; }
+    { step = 4; continue; }
+  case 3:
+    r0 = 4;
+    { step = 5; continue; }
+  case 4:
+    r0 = undefined;
+  case 5:
+    return leave(s, r0)
+  default: oops()
+} } }
+qrcode_QRUtil_getMode__P42030.info = {"start":3804,"length":254,"line":116,"column":4,"endLine":125,"endColumn":5,"fileName":"qrutil.ts","functionName":"getMode","argumentNames":["s"]}
+
+function qrcode_QRUtil_getMode__P42030_mk(s) {
+    checkStack(s.depth);
+    return {
+        parent: s, fn: qrcode_QRUtil_getMode__P42030, depth: s.depth + 1,
+        pc: 0, retval: undefined, r0: undefined, overwrittenPC: false, lambdaArgs: null,
+  tmp_0: undefined,
+  tmp_1: undefined,
+  tmp_2: undefined,
+  tmp_3: undefined,
+  arg0: undefined,
+} }
+
+
+
+
+
+function qrcode_QRUtil_isNumber__P43586(s) {
+let r0 = s.r0, step = s.pc;
+s.pc = -1;
+
+
+while (true) {
+if (yieldSteps-- < 0 && maybeYield(s, step, r0)) return null;
+switch (step) {
+  case 0:
+
+    s.i___43776 = undefined;
+    s.c___43782 = undefined;
+    if (s.lambdaArgs) {
+      s.arg0 = (s.lambdaArgs[0]);
+      s.lambdaArgs = null;
+    }
+    s.i___43776 = (0);
+  case 1:
+    s.tmp_1 = r0 = s.i___43776;
+    r0 = pxsim_String_.length(s.arg0);
+    s.tmp_2 = r0;
+    r0 = (s.tmp_1 < s.tmp_2);
+    s.tmp_0 = r0;
+    r0 = pxsim_numops_toBoolDecr(s.tmp_0);
+    if (!r0) { step = 6; continue; }
+    r0 = pxsim_String_.charAt(s.arg0, s.i___43776);
+    s.c___43782 = (r0);
+    r0 = ("0" <= s.c___43782);
+    s.tmp_0 = r0;
+    r0 = pxsim_numops_toBool(s.tmp_0);
+    if (r0) { step = 2; continue; }
+    r0 = s.tmp_0;
+    { step = 3; continue; }
+  case 2:
+    r0 = (s.c___43782 <= "9");
+  case 3:
+    // jmp value (already in r0)
+    s.tmp_1 = r0;
+    r0 = pxsim_numops_toBoolDecr(s.tmp_1);
+    s.tmp_3 = r0;
+    r0 = pxsim_Boolean__bang(s.tmp_3);
+    s.tmp_2 = r0;
+    r0 = pxsim_numops_toBoolDecr(s.tmp_2);
+    if (!r0) { step = 4; continue; }
+    r0 = false;
+    { step = 7; continue; }
+  case 4:
+  case 5:
+    r0 = (s.i___43776 + 1);
+    s.i___43776 = (r0);
+    { step = 1; continue; }
+  case 6:
+    r0 = true;
+  case 7:
+    return leave(s, r0)
+  default: oops()
+} } }
+qrcode_QRUtil_isNumber__P43586.info = {"start":4065,"length":217,"line":128,"column":4,"endLine":136,"endColumn":5,"fileName":"qrutil.ts","functionName":"isNumber","argumentNames":["s"]}
+
+function qrcode_QRUtil_isNumber__P43586_mk(s) {
+    checkStack(s.depth);
+    return {
+        parent: s, fn: qrcode_QRUtil_isNumber__P43586, depth: s.depth + 1,
+        pc: 0, retval: undefined, r0: undefined, overwrittenPC: false, lambdaArgs: null,
+  tmp_0: undefined,
+  tmp_1: undefined,
+  tmp_2: undefined,
+  tmp_3: undefined,
+  i___43776: undefined,
+  c___43782: undefined,
+  arg0: undefined,
+} }
+
+
+
+
+
+function qrcode_QRUtil_isAlphaNum__P43587(s) {
+let r0 = s.r0, step = s.pc;
+s.pc = -1;
+
+
+while (true) {
+if (yieldSteps-- < 0 && maybeYield(s, step, r0)) return null;
+switch (step) {
+  case 0:
+
+    s.i___43798 = undefined;
+    s.c___43805 = undefined;
+    if (s.lambdaArgs) {
+      s.arg0 = (s.lambdaArgs[0]);
+      s.lambdaArgs = null;
+    }
+    s.i___43798 = (0);
+  case 1:
+    s.tmp_1 = r0 = s.i___43798;
+    r0 = pxsim_String_.length(s.arg0);
+    s.tmp_2 = r0;
+    r0 = (s.tmp_1 < s.tmp_2);
+    s.tmp_0 = r0;
+    r0 = pxsim_numops_toBoolDecr(s.tmp_0);
+    if (!r0) { step = 12; continue; }
+    r0 = pxsim_String_.charAt(s.arg0, s.i___43798);
+    s.c___43805 = (r0);
+    r0 = ("0" <= s.c___43805);
+    s.tmp_0 = r0;
+    r0 = pxsim_numops_toBool(s.tmp_0);
+    if (r0) { step = 2; continue; }
+    r0 = s.tmp_0;
+    { step = 3; continue; }
+  case 2:
+    r0 = (s.c___43805 <= "9");
+  case 3:
+    // jmp value (already in r0)
+    s.tmp_1 = r0;
+    r0 = pxsim_numops_toBoolDecr(s.tmp_1);
+    s.tmp_3 = r0;
+    r0 = pxsim_Boolean__bang(s.tmp_3);
+    s.tmp_2 = r0;
+    r0 = pxsim_numops_toBool(s.tmp_2);
+    if (r0) { step = 4; continue; }
+    r0 = s.tmp_2;
+    { step = 7; continue; }
+  case 4:
+    r0 = ("A" <= s.c___43805);
+    s.tmp_4 = r0;
+    r0 = pxsim_numops_toBool(s.tmp_4);
+    if (r0) { step = 5; continue; }
+    r0 = s.tmp_4;
+    { step = 6; continue; }
+  case 5:
+    r0 = (s.c___43805 <= "Z");
+  case 6:
+    // jmp value (already in r0)
+    s.tmp_5 = r0;
+    r0 = pxsim_numops_toBoolDecr(s.tmp_5);
+    s.tmp_6 = r0;
+    r0 = pxsim_Boolean__bang(s.tmp_6);
+  case 7:
+    // jmp value (already in r0)
+    s.tmp_7 = r0;
+    r0 = pxsim_numops_toBool(s.tmp_7);
+    if (r0) { step = 8; continue; }
+    r0 = s.tmp_7;
+    { step = 9; continue; }
+  case 8:
+    r0 = pxsim_String_.indexOf(" $%*+-./:", s.c___43805, undefined);
+    s.tmp_8 = r0;
+    r0 = (s.tmp_8 == -1);
+  case 9:
+    // jmp value (already in r0)
+    s.tmp_9 = r0;
+    r0 = pxsim_numops_toBoolDecr(s.tmp_9);
+    if (!r0) { step = 10; continue; }
+    r0 = false;
+    { step = 13; continue; }
+  case 10:
+  case 11:
+    r0 = (s.i___43798 + 1);
+    s.i___43798 = (r0);
+    { step = 1; continue; }
+  case 12:
+    r0 = true;
+  case 13:
+    return leave(s, r0)
+  default: oops()
+} } }
+qrcode_QRUtil_isAlphaNum__P43587.info = {"start":4290,"length":286,"line":138,"column":4,"endLine":146,"endColumn":5,"fileName":"qrutil.ts","functionName":"isAlphaNum","argumentNames":["s"]}
+
+function qrcode_QRUtil_isAlphaNum__P43587_mk(s) {
+    checkStack(s.depth);
+    return {
+        parent: s, fn: qrcode_QRUtil_isAlphaNum__P43587, depth: s.depth + 1,
+        pc: 0, retval: undefined, r0: undefined, overwrittenPC: false, lambdaArgs: null,
+  tmp_0: undefined,
+  tmp_1: undefined,
+  tmp_2: undefined,
+  tmp_3: undefined,
+  tmp_4: undefined,
+  tmp_5: undefined,
+  tmp_6: undefined,
+  tmp_7: undefined,
+  tmp_8: undefined,
+  tmp_9: undefined,
+  i___43798: undefined,
+  c___43805: undefined,
+  arg0: undefined,
+} }
+
+
+
+
+
 function qrcode_QRCode_setErrorCorrectLevel__P41928(s) {
 let r0 = s.r0, step = s.pc;
 s.pc = -1;
@@ -12392,43 +13609,6 @@ function qrcode_QRCode_setErrorCorrectLevel__P41928_mk(s) {
     checkStack(s.depth);
     return {
         parent: s, fn: qrcode_QRCode_setErrorCorrectLevel__P41928, depth: s.depth + 1,
-        pc: 0, retval: undefined, r0: undefined, overwrittenPC: false, lambdaArgs: null,
-  arg0: undefined,
-  arg1: undefined,
-} }
-
-
-
-
-
-function qrcode_QRCode_setTypeNumber__P41926(s) {
-let r0 = s.r0, step = s.pc;
-s.pc = -1;
-
-
-while (true) {
-if (yieldSteps-- < 0 && maybeYield(s, step, r0)) return null;
-switch (step) {
-  case 0:
-
-    if (s.lambdaArgs) {
-      s.arg0 = (s.lambdaArgs[0]);
-      s.arg1 = (s.lambdaArgs[1]);
-      s.lambdaArgs = null;
-    }
-    r0 = s.arg0;
-    if (!checkSubtype(r0, qrcode_QRCode__C41924_VT)) failedCast(r0);
-    r0 = (s.arg0).fields["typeNumber"] = (s.arg1);
-    r0 = undefined;
-    return leave(s, r0)
-  default: oops()
-} } }
-qrcode_QRCode_setTypeNumber__P41926.info = {"start":1176,"length":90,"line":54,"column":4,"endLine":56,"endColumn":5,"fileName":"qrcode.ts","functionName":"setTypeNumber","argumentNames":["this","typeNumber"]}
-
-function qrcode_QRCode_setTypeNumber__P41926_mk(s) {
-    checkStack(s.depth);
-    return {
-        parent: s, fn: qrcode_QRCode_setTypeNumber__P41926, depth: s.depth + 1,
         pc: 0, retval: undefined, r0: undefined, overwrittenPC: false, lambdaArgs: null,
   arg0: undefined,
   arg1: undefined,
@@ -41053,6 +42233,769 @@ function particles_ParticleFactory_drawParticle__P41196_mk(s) {
 
 
 
+function qrcode_QR8BitByte_getLength__P41782(s) {
+let r0 = s.r0, step = s.pc;
+s.pc = -1;
+
+
+while (true) {
+if (yieldSteps-- < 0 && maybeYield(s, step, r0)) return null;
+switch (step) {
+  case 0:
+
+    if (s.lambdaArgs) {
+      s.arg0 = (s.lambdaArgs[0]);
+      s.lambdaArgs = null;
+    }
+    r0 = s.arg0;
+    if (!checkSubtype(r0, qrcode_QR8BitByte__C41773_VT)) failedCast(r0);
+    r0 = s.arg0.fields["data"];
+    s.tmp_1 = r0;
+    r0 = pxsim.control.createBufferFromUTF8(s.tmp_1);
+    s.tmp_0 = r0;
+    r0 = pxsim.BufferMethods.length(s.tmp_0);
+    return leave(s, r0)
+  default: oops()
+} } }
+qrcode_QR8BitByte_getLength__P41782.info = {"start":410,"length":102,"line":19,"column":4,"endLine":21,"endColumn":5,"fileName":"qr8bitbyte.ts","functionName":"getLength","argumentNames":["this"]}
+
+function qrcode_QR8BitByte_getLength__P41782_mk(s) {
+    checkStack(s.depth);
+    return {
+        parent: s, fn: qrcode_QR8BitByte_getLength__P41782, depth: s.depth + 1,
+        pc: 0, retval: undefined, r0: undefined, overwrittenPC: false, lambdaArgs: null,
+  tmp_0: undefined,
+  tmp_1: undefined,
+  arg0: undefined,
+} }
+
+
+
+
+
+function qrcode_QRData_getData__P41777(s) {
+let r0 = s.r0, step = s.pc;
+s.pc = -1;
+
+
+while (true) {
+if (yieldSteps-- < 0 && maybeYield(s, step, r0)) return null;
+switch (step) {
+  case 0:
+
+    if (s.lambdaArgs) {
+      s.arg0 = (s.lambdaArgs[0]);
+      s.lambdaArgs = null;
+    }
+    r0 = s.arg0;
+    if (!checkSubtype(r0, qrcode_QRData__C41775_VT)) failedCast(r0);
+    r0 = s.arg0.fields["data"];
+    return leave(s, r0)
+  default: oops()
+} } }
+qrcode_QRData_getData__P41777.info = {"start":310,"length":56,"line":19,"column":4,"endLine":21,"endColumn":5,"fileName":"qrdata.ts","functionName":"getData","argumentNames":["this"]}
+
+function qrcode_QRData_getData__P41777_mk(s) {
+    checkStack(s.depth);
+    return {
+        parent: s, fn: qrcode_QRData_getData__P41777, depth: s.depth + 1,
+        pc: 0, retval: undefined, r0: undefined, overwrittenPC: false, lambdaArgs: null,
+  arg0: undefined,
+} }
+
+
+
+
+
+function qrcode_QR8BitByte_write__P41781(s) {
+let r0 = s.r0, step = s.pc;
+s.pc = -1;
+
+
+while (true) {
+if (yieldSteps-- < 0 && maybeYield(s, step, r0)) return null;
+switch (step) {
+  case 0:
+
+    s.data___41793 = undefined;
+    s.i___41797 = undefined;
+    if (s.lambdaArgs) {
+      s.arg0 = (s.lambdaArgs[0]);
+      s.arg1 = (s.lambdaArgs[1]);
+      s.lambdaArgs = null;
+    }
+    r0 = s.arg0;
+    if (!checkSubtype(r0, qrcode_QR8BitByte__C41773_VT)) failedCast(r0);
+    r0 = s.arg0.fields["data"];
+    s.tmp_0 = r0;
+    r0 = pxsim.control.createBufferFromUTF8(s.tmp_0);
+    s.data___41793 = (r0);
+    s.i___41797 = (0);
+  case 1:
+    s.tmp_1 = r0 = s.i___41797;
+    r0 = pxsim.BufferMethods.length(s.data___41793);
+    s.tmp_2 = r0;
+    r0 = (s.tmp_1 < s.tmp_2);
+    s.tmp_0 = r0;
+    r0 = pxsim_numops_toBoolDecr(s.tmp_0);
+    if (!r0) { step = 2; continue; }
+    s.tmp_3 = qrcode_BitBuffer_put__P41397_mk(s);
+    s.tmp_3.arg0 = s.arg1;
+    r0 = pxsim.BufferMethods.getByte(s.data___41793, s.i___41797);
+    s.tmp_3.arg1 = r0;
+    s.tmp_3.arg2 = 8;
+    s.pc = 3; return s.tmp_3;
+  case 3:
+    r0 = s.retval;
+    r0 = (s.i___41797 + 1);
+    s.i___41797 = (r0);
+    { step = 1; continue; }
+  case 2:
+    r0 = undefined;
+    return leave(s, r0)
+  default: oops()
+} } }
+qrcode_QR8BitByte_write__P41781.info = {"start":204,"length":200,"line":12,"column":4,"endLine":17,"endColumn":5,"fileName":"qr8bitbyte.ts","functionName":"write","argumentNames":["this","buffer"]}
+
+function qrcode_QR8BitByte_write__P41781_mk(s) {
+    checkStack(s.depth);
+    return {
+        parent: s, fn: qrcode_QR8BitByte_write__P41781, depth: s.depth + 1,
+        pc: 0, retval: undefined, r0: undefined, overwrittenPC: false, lambdaArgs: null,
+  tmp_0: undefined,
+  tmp_1: undefined,
+  tmp_2: undefined,
+  tmp_3: undefined,
+  data___41793: undefined,
+  i___41797: undefined,
+  arg0: undefined,
+  arg1: undefined,
+} }
+
+
+
+
+
+function qrcode_QRAlphaNum_getLength__P41820(s) {
+let r0 = s.r0, step = s.pc;
+s.pc = -1;
+
+
+while (true) {
+if (yieldSteps-- < 0 && maybeYield(s, step, r0)) return null;
+switch (step) {
+  case 0:
+
+    if (s.lambdaArgs) {
+      s.arg0 = (s.lambdaArgs[0]);
+      s.lambdaArgs = null;
+    }
+    r0 = s.arg0;
+    if (!checkSubtype(r0, qrcode_QRAlphaNum__C41817_VT)) failedCast(r0);
+    r0 = s.arg0.fields["data"];
+    s.tmp_0 = r0;
+    r0 = pxsim_String_.length(s.tmp_0);
+    return leave(s, r0)
+  default: oops()
+} } }
+qrcode_QRAlphaNum_getLength__P41820.info = {"start":579,"length":71,"line":30,"column":4,"endLine":32,"endColumn":5,"fileName":"qralphanum.ts","functionName":"getLength","argumentNames":["this"]}
+
+function qrcode_QRAlphaNum_getLength__P41820_mk(s) {
+    checkStack(s.depth);
+    return {
+        parent: s, fn: qrcode_QRAlphaNum_getLength__P41820, depth: s.depth + 1,
+        pc: 0, retval: undefined, r0: undefined, overwrittenPC: false, lambdaArgs: null,
+  tmp_0: undefined,
+  arg0: undefined,
+} }
+
+
+
+
+
+function qrcode_QRAlphaNum_write__P41819(s) {
+let r0 = s.r0, step = s.pc;
+s.pc = -1;
+
+
+while (true) {
+if (yieldSteps-- < 0 && maybeYield(s, step, r0)) return null;
+switch (step) {
+  case 0:
+
+    s.s___41831 = undefined;
+    s.i___41833 = undefined;
+    if (s.lambdaArgs) {
+      s.arg0 = (s.lambdaArgs[0]);
+      s.arg1 = (s.lambdaArgs[1]);
+      s.lambdaArgs = null;
+    }
+    r0 = s.arg0;
+    if (!checkSubtype(r0, qrcode_QRAlphaNum__C41817_VT)) failedCast(r0);
+    r0 = s.arg0.fields["data"];
+    s.s___41831 = (r0);
+    s.i___41833 = (0);
+  case 1:
+    r0 = (s.i___41833 + 1);
+    s.tmp_1 = r0;
+    r0 = pxsim_String_.length(s.s___41831);
+    s.tmp_2 = r0;
+    r0 = (s.tmp_1 < s.tmp_2);
+    s.tmp_0 = r0;
+    r0 = pxsim_numops_toBoolDecr(s.tmp_0);
+    if (!r0) { step = 2; continue; }
+    s.tmp_3 = qrcode_BitBuffer_put__P41397_mk(s);
+    s.tmp_3.arg0 = s.arg1;
+    s.tmp_6 = qrcode_QRAlphaNum_getCode__P41821_mk(s);
+    r0 = pxsim_String_.charAt(s.s___41831, s.i___41833);
+    s.tmp_6.arg0 = r0;
+    s.pc = 6; return s.tmp_6;
+  case 6:
+    r0 = s.retval;
+    s.tmp_5 = r0;
+    r0 = (s.tmp_5 * 45);
+    s.tmp_4 = r0;
+    s.tmp_8 = qrcode_QRAlphaNum_getCode__P41821_mk(s);
+    s.tmp_9 = r0 = s.s___41831;
+    r0 = (s.i___41833 + 1);
+    s.tmp_10 = r0;
+    r0 = pxsim_String_.charAt(s.tmp_9, s.tmp_10);
+    s.tmp_8.arg0 = r0;
+    s.pc = 7; return s.tmp_8;
+  case 7:
+    r0 = s.retval;
+    s.tmp_7 = r0;
+    r0 = (s.tmp_4 + s.tmp_7);
+    s.tmp_3.arg1 = r0;
+    s.tmp_3.arg2 = 11;
+    s.pc = 5; return s.tmp_3;
+  case 5:
+    r0 = s.retval;
+    r0 = (s.i___41833 + 2);
+    s.i___41833 = (r0);
+    { step = 1; continue; }
+  case 2:
+    s.tmp_1 = r0 = s.i___41833;
+    r0 = pxsim_String_.length(s.s___41831);
+    s.tmp_2 = r0;
+    r0 = (s.tmp_1 < s.tmp_2);
+    s.tmp_0 = r0;
+    r0 = pxsim_numops_toBoolDecr(s.tmp_0);
+    if (!r0) { step = 3; continue; }
+    s.tmp_3 = qrcode_BitBuffer_put__P41397_mk(s);
+    s.tmp_3.arg0 = s.arg1;
+    s.tmp_4 = qrcode_QRAlphaNum_getCode__P41821_mk(s);
+    r0 = pxsim_String_.charAt(s.s___41831, s.i___41833);
+    s.tmp_4.arg0 = r0;
+    s.pc = 9; return s.tmp_4;
+  case 9:
+    r0 = s.retval;
+    s.tmp_3.arg1 = r0;
+    s.tmp_3.arg2 = 6;
+    s.pc = 8; return s.tmp_3;
+  case 8:
+    r0 = s.retval;
+  case 3:
+  case 4:
+    r0 = undefined;
+    return leave(s, r0)
+  default: oops()
+} } }
+qrcode_QRAlphaNum_write__P41819.info = {"start":204,"length":369,"line":12,"column":4,"endLine":28,"endColumn":5,"fileName":"qralphanum.ts","functionName":"write","argumentNames":["this","buffer"]}
+
+function qrcode_QRAlphaNum_write__P41819_mk(s) {
+    checkStack(s.depth);
+    return {
+        parent: s, fn: qrcode_QRAlphaNum_write__P41819, depth: s.depth + 1,
+        pc: 0, retval: undefined, r0: undefined, overwrittenPC: false, lambdaArgs: null,
+  tmp_0: undefined,
+  tmp_1: undefined,
+  tmp_2: undefined,
+  tmp_3: undefined,
+  tmp_4: undefined,
+  tmp_5: undefined,
+  tmp_6: undefined,
+  tmp_7: undefined,
+  tmp_8: undefined,
+  tmp_9: undefined,
+  tmp_10: undefined,
+  s___41831: undefined,
+  i___41833: undefined,
+  arg0: undefined,
+  arg1: undefined,
+} }
+
+
+
+
+
+function qrcode_QRAlphaNum_getCode__P41821(s) {
+let r0 = s.r0, step = s.pc;
+s.pc = -1;
+
+
+while (true) {
+if (yieldSteps-- < 0 && maybeYield(s, step, r0)) return null;
+switch (step) {
+  case 0:
+
+    if (s.lambdaArgs) {
+      s.arg0 = (s.lambdaArgs[0]);
+      s.lambdaArgs = null;
+    }
+    r0 = ("0" <= s.arg0);
+    s.tmp_0 = r0;
+    r0 = pxsim_numops_toBool(s.tmp_0);
+    if (r0) { step = 1; continue; }
+    r0 = s.tmp_0;
+    { step = 2; continue; }
+  case 1:
+    r0 = (s.arg0 <= "9");
+  case 2:
+    // jmp value (already in r0)
+    s.tmp_1 = r0;
+    r0 = pxsim_numops_toBoolDecr(s.tmp_1);
+    if (!r0) { step = 3; continue; }
+    r0 = pxsim_String_.charCodeAt(s.arg0, 0);
+    s.tmp_2 = r0;
+    r0 = pxsim_String_.charCodeAt("0", 0);
+    s.tmp_3 = r0;
+    r0 = (s.tmp_2 - s.tmp_3);
+    { step = 19; continue; }
+    { step = 18; continue; }
+  case 3:
+    r0 = ("A" <= s.arg0);
+    s.tmp_4 = r0;
+    r0 = pxsim_numops_toBool(s.tmp_4);
+    if (r0) { step = 4; continue; }
+    r0 = s.tmp_4;
+    { step = 5; continue; }
+  case 4:
+    r0 = (s.arg0 <= "Z");
+  case 5:
+    // jmp value (already in r0)
+    s.tmp_5 = r0;
+    r0 = pxsim_numops_toBoolDecr(s.tmp_5);
+    if (!r0) { step = 6; continue; }
+    r0 = pxsim_String_.charCodeAt(s.arg0, 0);
+    s.tmp_7 = r0;
+    r0 = pxsim_String_.charCodeAt("A", 0);
+    s.tmp_8 = r0;
+    r0 = (s.tmp_7 - s.tmp_8);
+    s.tmp_6 = r0;
+    r0 = (s.tmp_6 + 10);
+    { step = 19; continue; }
+    { step = 17; continue; }
+  case 6:
+    s.tmp_9 = r0 = s.arg0;
+    r0 = pxsim_pxtcore.switch_eq(" ", s.tmp_9);
+    if (r0) { step = 7; continue; }
+    r0 = pxsim_pxtcore.switch_eq("$", s.tmp_9);
+    if (r0) { step = 8; continue; }
+    r0 = pxsim_pxtcore.switch_eq("%", s.tmp_9);
+    if (r0) { step = 9; continue; }
+    r0 = pxsim_pxtcore.switch_eq("*", s.tmp_9);
+    if (r0) { step = 10; continue; }
+    r0 = pxsim_pxtcore.switch_eq("+", s.tmp_9);
+    if (r0) { step = 11; continue; }
+    r0 = pxsim_pxtcore.switch_eq("-", s.tmp_9);
+    if (r0) { step = 12; continue; }
+    r0 = pxsim_pxtcore.switch_eq(".", s.tmp_9);
+    if (r0) { step = 13; continue; }
+    r0 = pxsim_pxtcore.switch_eq("/", s.tmp_9);
+    if (r0) { step = 14; continue; }
+    r0 = pxsim_pxtcore.switch_eq(":", s.tmp_9);
+    if (r0) { step = 15; continue; }
+    r0 = s.tmp_9;
+    { step = 16; continue; }
+  case 7:
+    r0 = 36;
+    { step = 19; continue; }
+  case 8:
+    r0 = 37;
+    { step = 19; continue; }
+  case 9:
+    r0 = 38;
+    { step = 19; continue; }
+  case 10:
+    r0 = 39;
+    { step = 19; continue; }
+  case 11:
+    r0 = 40;
+    { step = 19; continue; }
+  case 12:
+    r0 = 41;
+    { step = 19; continue; }
+  case 13:
+    r0 = 42;
+    { step = 19; continue; }
+  case 14:
+    r0 = 43;
+    { step = 19; continue; }
+  case 15:
+    r0 = 44;
+    { step = 19; continue; }
+  case 16:
+    s.tmp_10 = qrcode_panic__P41912_mk(s);
+    if ((s.arg0) && (s.arg0).vtable) {
+    setupResume(s, 21);
+    pxsim_String__stringConv(s.arg0);
+    checkResumeConsumed();
+    return;
+    } else { s.retval = (s.arg0) + ""; }
+  case 21:
+    r0 = s.retval;
+    s.tmp_11 = r0;
+    r0 = pxsim_String__concat("illegal char :", s.tmp_11);
+    s.tmp_10.arg0 = r0;
+    s.pc = 20; return s.tmp_10;
+  case 20:
+    r0 = s.retval;
+    { step = 19; continue; }
+  case 17:
+  case 18:
+    r0 = undefined;
+  case 19:
+    return leave(s, r0)
+  default: oops()
+} } }
+qrcode_QRAlphaNum_getCode__P41821.info = {"start":656,"length":631,"line":34,"column":4,"endLine":55,"endColumn":5,"fileName":"qralphanum.ts","functionName":"getCode","argumentNames":["c"]}
+
+function qrcode_QRAlphaNum_getCode__P41821_mk(s) {
+    checkStack(s.depth);
+    return {
+        parent: s, fn: qrcode_QRAlphaNum_getCode__P41821, depth: s.depth + 1,
+        pc: 0, retval: undefined, r0: undefined, overwrittenPC: false, lambdaArgs: null,
+  tmp_0: undefined,
+  tmp_1: undefined,
+  tmp_2: undefined,
+  tmp_3: undefined,
+  tmp_4: undefined,
+  tmp_5: undefined,
+  tmp_6: undefined,
+  tmp_7: undefined,
+  tmp_8: undefined,
+  tmp_9: undefined,
+  tmp_10: undefined,
+  tmp_11: undefined,
+  arg0: undefined,
+} }
+
+
+
+
+
+function qrcode_QRNumber_getLength__P42043(s) {
+let r0 = s.r0, step = s.pc;
+s.pc = -1;
+
+
+while (true) {
+if (yieldSteps-- < 0 && maybeYield(s, step, r0)) return null;
+switch (step) {
+  case 0:
+
+    if (s.lambdaArgs) {
+      s.arg0 = (s.lambdaArgs[0]);
+      s.lambdaArgs = null;
+    }
+    r0 = s.arg0;
+    if (!checkSubtype(r0, qrcode_QRNumber__C42039_VT)) failedCast(r0);
+    r0 = s.arg0.fields["data"];
+    s.tmp_0 = r0;
+    r0 = pxsim_String_.length(s.tmp_0);
+    return leave(s, r0)
+  default: oops()
+} } }
+qrcode_QRNumber_getLength__P42043.info = {"start":681,"length":71,"line":32,"column":4,"endLine":34,"endColumn":5,"fileName":"qrnumber.ts","functionName":"getLength","argumentNames":["this"]}
+
+function qrcode_QRNumber_getLength__P42043_mk(s) {
+    checkStack(s.depth);
+    return {
+        parent: s, fn: qrcode_QRNumber_getLength__P42043, depth: s.depth + 1,
+        pc: 0, retval: undefined, r0: undefined, overwrittenPC: false, lambdaArgs: null,
+  tmp_0: undefined,
+  arg0: undefined,
+} }
+
+
+
+
+
+function qrcode_QRNumber_write__P42042(s) {
+let r0 = s.r0, step = s.pc;
+s.pc = -1;
+
+
+while (true) {
+if (yieldSteps-- < 0 && maybeYield(s, step, r0)) return null;
+switch (step) {
+  case 0:
+
+    s.data___43394 = undefined;
+    s.i___43396 = undefined;
+    if (s.lambdaArgs) {
+      s.arg0 = (s.lambdaArgs[0]);
+      s.arg1 = (s.lambdaArgs[1]);
+      s.lambdaArgs = null;
+    }
+    r0 = s.arg0;
+    if (!checkSubtype(r0, qrcode_QRNumber__C42039_VT)) failedCast(r0);
+    r0 = s.arg0.fields["data"];
+    s.data___43394 = (r0);
+    s.i___43396 = (0);
+  case 1:
+    r0 = (s.i___43396 + 2);
+    s.tmp_1 = r0;
+    r0 = pxsim_String_.length(s.data___43394);
+    s.tmp_2 = r0;
+    r0 = (s.tmp_1 < s.tmp_2);
+    s.tmp_0 = r0;
+    r0 = pxsim_numops_toBoolDecr(s.tmp_0);
+    if (!r0) { step = 2; continue; }
+    s.tmp_3 = qrcode_BitBuffer_put__P41397_mk(s);
+    s.tmp_3.arg0 = s.arg1;
+    s.tmp_4 = qrcode_QRNumber_strToNum__P42044_mk(s);
+    r0 = pxsim_String_.substr(s.data___43394, s.i___43396, 3);
+    s.tmp_4.arg0 = r0;
+    s.pc = 10; return s.tmp_4;
+  case 10:
+    r0 = s.retval;
+    s.tmp_3.arg1 = r0;
+    s.tmp_3.arg2 = 10;
+    s.pc = 9; return s.tmp_3;
+  case 9:
+    r0 = s.retval;
+    r0 = (s.i___43396 + 3);
+    s.i___43396 = (r0);
+    { step = 1; continue; }
+  case 2:
+    s.tmp_1 = r0 = s.i___43396;
+    r0 = pxsim_String_.length(s.data___43394);
+    s.tmp_2 = r0;
+    r0 = (s.tmp_1 < s.tmp_2);
+    s.tmp_0 = r0;
+    r0 = pxsim_numops_toBoolDecr(s.tmp_0);
+    if (!r0) { step = 7; continue; }
+    r0 = pxsim_String_.length(s.data___43394);
+    s.tmp_5 = r0;
+    r0 = (s.tmp_5 - s.i___43396);
+    s.tmp_4 = r0;
+    r0 = (s.tmp_4 == 1);
+    s.tmp_3 = r0;
+    r0 = pxsim_numops_toBoolDecr(s.tmp_3);
+    if (!r0) { step = 3; continue; }
+    s.tmp_6 = qrcode_BitBuffer_put__P41397_mk(s);
+    s.tmp_6.arg0 = s.arg1;
+    s.tmp_7 = qrcode_QRNumber_strToNum__P42044_mk(s);
+    r0 = pxsim_String_.substr(s.data___43394, s.i___43396, 1);
+    s.tmp_7.arg0 = r0;
+    s.pc = 12; return s.tmp_7;
+  case 12:
+    r0 = s.retval;
+    s.tmp_6.arg1 = r0;
+    s.tmp_6.arg2 = 4;
+    s.pc = 11; return s.tmp_6;
+  case 11:
+    r0 = s.retval;
+    { step = 6; continue; }
+  case 3:
+    r0 = pxsim_String_.length(s.data___43394);
+    s.tmp_2 = r0;
+    r0 = (s.tmp_2 - s.i___43396);
+    s.tmp_1 = r0;
+    r0 = (s.tmp_1 == 2);
+    s.tmp_0 = r0;
+    r0 = pxsim_numops_toBoolDecr(s.tmp_0);
+    if (!r0) { step = 4; continue; }
+    s.tmp_3 = qrcode_BitBuffer_put__P41397_mk(s);
+    s.tmp_3.arg0 = s.arg1;
+    s.tmp_4 = qrcode_QRNumber_strToNum__P42044_mk(s);
+    r0 = pxsim_String_.substr(s.data___43394, s.i___43396, 2);
+    s.tmp_4.arg0 = r0;
+    s.pc = 14; return s.tmp_4;
+  case 14:
+    r0 = s.retval;
+    s.tmp_3.arg1 = r0;
+    s.tmp_3.arg2 = 7;
+    s.pc = 13; return s.tmp_3;
+  case 13:
+    r0 = s.retval;
+  case 4:
+  case 5:
+  case 6:
+  case 7:
+  case 8:
+    r0 = undefined;
+    return leave(s, r0)
+  default: oops()
+} } }
+qrcode_QRNumber_write__P42042.info = {"start":197,"length":478,"line":12,"column":4,"endLine":30,"endColumn":5,"fileName":"qrnumber.ts","functionName":"write","argumentNames":["this","buffer"]}
+
+function qrcode_QRNumber_write__P42042_mk(s) {
+    checkStack(s.depth);
+    return {
+        parent: s, fn: qrcode_QRNumber_write__P42042, depth: s.depth + 1,
+        pc: 0, retval: undefined, r0: undefined, overwrittenPC: false, lambdaArgs: null,
+  tmp_0: undefined,
+  tmp_1: undefined,
+  tmp_2: undefined,
+  tmp_3: undefined,
+  tmp_4: undefined,
+  tmp_5: undefined,
+  tmp_6: undefined,
+  tmp_7: undefined,
+  data___43394: undefined,
+  i___43396: undefined,
+  arg0: undefined,
+  arg1: undefined,
+} }
+
+
+
+
+
+function qrcode_QRNumber_strToNum__P42044(s) {
+let r0 = s.r0, step = s.pc;
+s.pc = -1;
+
+
+while (true) {
+if (yieldSteps-- < 0 && maybeYield(s, step, r0)) return null;
+switch (step) {
+  case 0:
+
+    s.num___43448 = undefined;
+    s.i___43449 = undefined;
+    if (s.lambdaArgs) {
+      s.arg0 = (s.lambdaArgs[0]);
+      s.lambdaArgs = null;
+    }
+    s.num___43448 = (0);
+    s.i___43449 = (0);
+  case 1:
+    s.tmp_1 = r0 = s.i___43449;
+    r0 = pxsim_String_.length(s.arg0);
+    s.tmp_2 = r0;
+    r0 = (s.tmp_1 < s.tmp_2);
+    s.tmp_0 = r0;
+    r0 = pxsim_numops_toBoolDecr(s.tmp_0);
+    if (!r0) { step = 2; continue; }
+    r0 = (s.num___43448 * 10);
+    s.tmp_3 = r0;
+    s.tmp_5 = qrcode_QRNumber_chatToNum__P42045_mk(s);
+    r0 = pxsim_String_.charAt(s.arg0, s.i___43449);
+    s.tmp_5.arg0 = r0;
+    s.pc = 3; return s.tmp_5;
+  case 3:
+    r0 = s.retval;
+    s.tmp_4 = r0;
+    r0 = (s.tmp_3 + s.tmp_4);
+    s.num___43448 = (r0);
+    r0 = (s.i___43449 + 1);
+    s.i___43449 = (r0);
+    { step = 1; continue; }
+  case 2:
+    r0 = s.num___43448;
+    return leave(s, r0)
+  default: oops()
+} } }
+qrcode_QRNumber_strToNum__P42044.info = {"start":758,"length":202,"line":36,"column":4,"endLine":42,"endColumn":5,"fileName":"qrnumber.ts","functionName":"strToNum","argumentNames":["s"]}
+
+function qrcode_QRNumber_strToNum__P42044_mk(s) {
+    checkStack(s.depth);
+    return {
+        parent: s, fn: qrcode_QRNumber_strToNum__P42044, depth: s.depth + 1,
+        pc: 0, retval: undefined, r0: undefined, overwrittenPC: false, lambdaArgs: null,
+  tmp_0: undefined,
+  tmp_1: undefined,
+  tmp_2: undefined,
+  tmp_3: undefined,
+  tmp_4: undefined,
+  tmp_5: undefined,
+  num___43448: undefined,
+  i___43449: undefined,
+  arg0: undefined,
+} }
+
+
+
+
+
+function qrcode_QRNumber_chatToNum__P42045(s) {
+let r0 = s.r0, step = s.pc;
+s.pc = -1;
+
+
+while (true) {
+if (yieldSteps-- < 0 && maybeYield(s, step, r0)) return null;
+switch (step) {
+  case 0:
+
+    if (s.lambdaArgs) {
+      s.arg0 = (s.lambdaArgs[0]);
+      s.lambdaArgs = null;
+    }
+    r0 = ("0" <= s.arg0);
+    s.tmp_0 = r0;
+    r0 = pxsim_numops_toBool(s.tmp_0);
+    if (r0) { step = 1; continue; }
+    r0 = s.tmp_0;
+    { step = 2; continue; }
+  case 1:
+    r0 = (s.arg0 <= "9");
+  case 2:
+    // jmp value (already in r0)
+    s.tmp_1 = r0;
+    r0 = pxsim_numops_toBoolDecr(s.tmp_1);
+    if (!r0) { step = 3; continue; }
+    r0 = pxsim_String_.charCodeAt(s.arg0, 0);
+    s.tmp_2 = r0;
+    r0 = pxsim_String_.charCodeAt("0", 0);
+    s.tmp_3 = r0;
+    r0 = (s.tmp_2 - s.tmp_3);
+    { step = 5; continue; }
+  case 3:
+  case 4:
+    s.tmp_4 = qrcode_panic__P41912_mk(s);
+    if ((s.arg0) && (s.arg0).vtable) {
+    setupResume(s, 7);
+    pxsim_String__stringConv(s.arg0);
+    checkResumeConsumed();
+    return;
+    } else { s.retval = (s.arg0) + ""; }
+  case 7:
+    r0 = s.retval;
+    s.tmp_5 = r0;
+    r0 = pxsim_String__concat("illegal char :", s.tmp_5);
+    s.tmp_4.arg0 = r0;
+    s.pc = 6; return s.tmp_4;
+  case 6:
+    r0 = s.retval;
+  case 5:
+    return leave(s, r0)
+  default: oops()
+} } }
+qrcode_QRNumber_chatToNum__P42045.info = {"start":966,"length":196,"line":44,"column":4,"endLine":49,"endColumn":5,"fileName":"qrnumber.ts","functionName":"chatToNum","argumentNames":["c"]}
+
+function qrcode_QRNumber_chatToNum__P42045_mk(s) {
+    checkStack(s.depth);
+    return {
+        parent: s, fn: qrcode_QRNumber_chatToNum__P42045, depth: s.depth + 1,
+        pc: 0, retval: undefined, r0: undefined, overwrittenPC: false, lambdaArgs: null,
+  tmp_0: undefined,
+  tmp_1: undefined,
+  tmp_2: undefined,
+  tmp_3: undefined,
+  tmp_4: undefined,
+  tmp_5: undefined,
+  arg0: undefined,
+} }
+
+
+
+
+
 function qrcode_Polynomial_toString__P41515(s) {
 let r0 = s.r0, step = s.pc;
 s.pc = -1;
@@ -42479,769 +44422,6 @@ function sprites_BaseSprite___visible__P40082_mk(s) {
     return {
         parent: s, fn: sprites_BaseSprite___visible__P40082, depth: s.depth + 1,
         pc: 0, retval: undefined, r0: undefined, overwrittenPC: false, lambdaArgs: null,
-  arg0: undefined,
-} }
-
-
-
-
-
-function qrcode_QR8BitByte_getLength__P41782(s) {
-let r0 = s.r0, step = s.pc;
-s.pc = -1;
-
-
-while (true) {
-if (yieldSteps-- < 0 && maybeYield(s, step, r0)) return null;
-switch (step) {
-  case 0:
-
-    if (s.lambdaArgs) {
-      s.arg0 = (s.lambdaArgs[0]);
-      s.lambdaArgs = null;
-    }
-    r0 = s.arg0;
-    if (!checkSubtype(r0, qrcode_QR8BitByte__C41773_VT)) failedCast(r0);
-    r0 = s.arg0.fields["data"];
-    s.tmp_1 = r0;
-    r0 = pxsim.control.createBufferFromUTF8(s.tmp_1);
-    s.tmp_0 = r0;
-    r0 = pxsim.BufferMethods.length(s.tmp_0);
-    return leave(s, r0)
-  default: oops()
-} } }
-qrcode_QR8BitByte_getLength__P41782.info = {"start":410,"length":102,"line":19,"column":4,"endLine":21,"endColumn":5,"fileName":"qr8bitbyte.ts","functionName":"getLength","argumentNames":["this"]}
-
-function qrcode_QR8BitByte_getLength__P41782_mk(s) {
-    checkStack(s.depth);
-    return {
-        parent: s, fn: qrcode_QR8BitByte_getLength__P41782, depth: s.depth + 1,
-        pc: 0, retval: undefined, r0: undefined, overwrittenPC: false, lambdaArgs: null,
-  tmp_0: undefined,
-  tmp_1: undefined,
-  arg0: undefined,
-} }
-
-
-
-
-
-function qrcode_QRData_getData__P41777(s) {
-let r0 = s.r0, step = s.pc;
-s.pc = -1;
-
-
-while (true) {
-if (yieldSteps-- < 0 && maybeYield(s, step, r0)) return null;
-switch (step) {
-  case 0:
-
-    if (s.lambdaArgs) {
-      s.arg0 = (s.lambdaArgs[0]);
-      s.lambdaArgs = null;
-    }
-    r0 = s.arg0;
-    if (!checkSubtype(r0, qrcode_QRData__C41775_VT)) failedCast(r0);
-    r0 = s.arg0.fields["data"];
-    return leave(s, r0)
-  default: oops()
-} } }
-qrcode_QRData_getData__P41777.info = {"start":310,"length":56,"line":19,"column":4,"endLine":21,"endColumn":5,"fileName":"qrdata.ts","functionName":"getData","argumentNames":["this"]}
-
-function qrcode_QRData_getData__P41777_mk(s) {
-    checkStack(s.depth);
-    return {
-        parent: s, fn: qrcode_QRData_getData__P41777, depth: s.depth + 1,
-        pc: 0, retval: undefined, r0: undefined, overwrittenPC: false, lambdaArgs: null,
-  arg0: undefined,
-} }
-
-
-
-
-
-function qrcode_QR8BitByte_write__P41781(s) {
-let r0 = s.r0, step = s.pc;
-s.pc = -1;
-
-
-while (true) {
-if (yieldSteps-- < 0 && maybeYield(s, step, r0)) return null;
-switch (step) {
-  case 0:
-
-    s.data___41793 = undefined;
-    s.i___41797 = undefined;
-    if (s.lambdaArgs) {
-      s.arg0 = (s.lambdaArgs[0]);
-      s.arg1 = (s.lambdaArgs[1]);
-      s.lambdaArgs = null;
-    }
-    r0 = s.arg0;
-    if (!checkSubtype(r0, qrcode_QR8BitByte__C41773_VT)) failedCast(r0);
-    r0 = s.arg0.fields["data"];
-    s.tmp_0 = r0;
-    r0 = pxsim.control.createBufferFromUTF8(s.tmp_0);
-    s.data___41793 = (r0);
-    s.i___41797 = (0);
-  case 1:
-    s.tmp_1 = r0 = s.i___41797;
-    r0 = pxsim.BufferMethods.length(s.data___41793);
-    s.tmp_2 = r0;
-    r0 = (s.tmp_1 < s.tmp_2);
-    s.tmp_0 = r0;
-    r0 = pxsim_numops_toBoolDecr(s.tmp_0);
-    if (!r0) { step = 2; continue; }
-    s.tmp_3 = qrcode_BitBuffer_put__P41397_mk(s);
-    s.tmp_3.arg0 = s.arg1;
-    r0 = pxsim.BufferMethods.getByte(s.data___41793, s.i___41797);
-    s.tmp_3.arg1 = r0;
-    s.tmp_3.arg2 = 8;
-    s.pc = 3; return s.tmp_3;
-  case 3:
-    r0 = s.retval;
-    r0 = (s.i___41797 + 1);
-    s.i___41797 = (r0);
-    { step = 1; continue; }
-  case 2:
-    r0 = undefined;
-    return leave(s, r0)
-  default: oops()
-} } }
-qrcode_QR8BitByte_write__P41781.info = {"start":204,"length":200,"line":12,"column":4,"endLine":17,"endColumn":5,"fileName":"qr8bitbyte.ts","functionName":"write","argumentNames":["this","buffer"]}
-
-function qrcode_QR8BitByte_write__P41781_mk(s) {
-    checkStack(s.depth);
-    return {
-        parent: s, fn: qrcode_QR8BitByte_write__P41781, depth: s.depth + 1,
-        pc: 0, retval: undefined, r0: undefined, overwrittenPC: false, lambdaArgs: null,
-  tmp_0: undefined,
-  tmp_1: undefined,
-  tmp_2: undefined,
-  tmp_3: undefined,
-  data___41793: undefined,
-  i___41797: undefined,
-  arg0: undefined,
-  arg1: undefined,
-} }
-
-
-
-
-
-function qrcode_QRAlphaNum_getLength__P41820(s) {
-let r0 = s.r0, step = s.pc;
-s.pc = -1;
-
-
-while (true) {
-if (yieldSteps-- < 0 && maybeYield(s, step, r0)) return null;
-switch (step) {
-  case 0:
-
-    if (s.lambdaArgs) {
-      s.arg0 = (s.lambdaArgs[0]);
-      s.lambdaArgs = null;
-    }
-    r0 = s.arg0;
-    if (!checkSubtype(r0, qrcode_QRAlphaNum__C41817_VT)) failedCast(r0);
-    r0 = s.arg0.fields["data"];
-    s.tmp_0 = r0;
-    r0 = pxsim_String_.length(s.tmp_0);
-    return leave(s, r0)
-  default: oops()
-} } }
-qrcode_QRAlphaNum_getLength__P41820.info = {"start":579,"length":71,"line":30,"column":4,"endLine":32,"endColumn":5,"fileName":"qralphanum.ts","functionName":"getLength","argumentNames":["this"]}
-
-function qrcode_QRAlphaNum_getLength__P41820_mk(s) {
-    checkStack(s.depth);
-    return {
-        parent: s, fn: qrcode_QRAlphaNum_getLength__P41820, depth: s.depth + 1,
-        pc: 0, retval: undefined, r0: undefined, overwrittenPC: false, lambdaArgs: null,
-  tmp_0: undefined,
-  arg0: undefined,
-} }
-
-
-
-
-
-function qrcode_QRAlphaNum_write__P41819(s) {
-let r0 = s.r0, step = s.pc;
-s.pc = -1;
-
-
-while (true) {
-if (yieldSteps-- < 0 && maybeYield(s, step, r0)) return null;
-switch (step) {
-  case 0:
-
-    s.s___41831 = undefined;
-    s.i___41833 = undefined;
-    if (s.lambdaArgs) {
-      s.arg0 = (s.lambdaArgs[0]);
-      s.arg1 = (s.lambdaArgs[1]);
-      s.lambdaArgs = null;
-    }
-    r0 = s.arg0;
-    if (!checkSubtype(r0, qrcode_QRAlphaNum__C41817_VT)) failedCast(r0);
-    r0 = s.arg0.fields["data"];
-    s.s___41831 = (r0);
-    s.i___41833 = (0);
-  case 1:
-    r0 = (s.i___41833 + 1);
-    s.tmp_1 = r0;
-    r0 = pxsim_String_.length(s.s___41831);
-    s.tmp_2 = r0;
-    r0 = (s.tmp_1 < s.tmp_2);
-    s.tmp_0 = r0;
-    r0 = pxsim_numops_toBoolDecr(s.tmp_0);
-    if (!r0) { step = 2; continue; }
-    s.tmp_3 = qrcode_BitBuffer_put__P41397_mk(s);
-    s.tmp_3.arg0 = s.arg1;
-    s.tmp_6 = qrcode_QRAlphaNum_getCode__P41821_mk(s);
-    r0 = pxsim_String_.charAt(s.s___41831, s.i___41833);
-    s.tmp_6.arg0 = r0;
-    s.pc = 6; return s.tmp_6;
-  case 6:
-    r0 = s.retval;
-    s.tmp_5 = r0;
-    r0 = (s.tmp_5 * 45);
-    s.tmp_4 = r0;
-    s.tmp_8 = qrcode_QRAlphaNum_getCode__P41821_mk(s);
-    s.tmp_9 = r0 = s.s___41831;
-    r0 = (s.i___41833 + 1);
-    s.tmp_10 = r0;
-    r0 = pxsim_String_.charAt(s.tmp_9, s.tmp_10);
-    s.tmp_8.arg0 = r0;
-    s.pc = 7; return s.tmp_8;
-  case 7:
-    r0 = s.retval;
-    s.tmp_7 = r0;
-    r0 = (s.tmp_4 + s.tmp_7);
-    s.tmp_3.arg1 = r0;
-    s.tmp_3.arg2 = 11;
-    s.pc = 5; return s.tmp_3;
-  case 5:
-    r0 = s.retval;
-    r0 = (s.i___41833 + 2);
-    s.i___41833 = (r0);
-    { step = 1; continue; }
-  case 2:
-    s.tmp_1 = r0 = s.i___41833;
-    r0 = pxsim_String_.length(s.s___41831);
-    s.tmp_2 = r0;
-    r0 = (s.tmp_1 < s.tmp_2);
-    s.tmp_0 = r0;
-    r0 = pxsim_numops_toBoolDecr(s.tmp_0);
-    if (!r0) { step = 3; continue; }
-    s.tmp_3 = qrcode_BitBuffer_put__P41397_mk(s);
-    s.tmp_3.arg0 = s.arg1;
-    s.tmp_4 = qrcode_QRAlphaNum_getCode__P41821_mk(s);
-    r0 = pxsim_String_.charAt(s.s___41831, s.i___41833);
-    s.tmp_4.arg0 = r0;
-    s.pc = 9; return s.tmp_4;
-  case 9:
-    r0 = s.retval;
-    s.tmp_3.arg1 = r0;
-    s.tmp_3.arg2 = 6;
-    s.pc = 8; return s.tmp_3;
-  case 8:
-    r0 = s.retval;
-  case 3:
-  case 4:
-    r0 = undefined;
-    return leave(s, r0)
-  default: oops()
-} } }
-qrcode_QRAlphaNum_write__P41819.info = {"start":204,"length":369,"line":12,"column":4,"endLine":28,"endColumn":5,"fileName":"qralphanum.ts","functionName":"write","argumentNames":["this","buffer"]}
-
-function qrcode_QRAlphaNum_write__P41819_mk(s) {
-    checkStack(s.depth);
-    return {
-        parent: s, fn: qrcode_QRAlphaNum_write__P41819, depth: s.depth + 1,
-        pc: 0, retval: undefined, r0: undefined, overwrittenPC: false, lambdaArgs: null,
-  tmp_0: undefined,
-  tmp_1: undefined,
-  tmp_2: undefined,
-  tmp_3: undefined,
-  tmp_4: undefined,
-  tmp_5: undefined,
-  tmp_6: undefined,
-  tmp_7: undefined,
-  tmp_8: undefined,
-  tmp_9: undefined,
-  tmp_10: undefined,
-  s___41831: undefined,
-  i___41833: undefined,
-  arg0: undefined,
-  arg1: undefined,
-} }
-
-
-
-
-
-function qrcode_QRAlphaNum_getCode__P41821(s) {
-let r0 = s.r0, step = s.pc;
-s.pc = -1;
-
-
-while (true) {
-if (yieldSteps-- < 0 && maybeYield(s, step, r0)) return null;
-switch (step) {
-  case 0:
-
-    if (s.lambdaArgs) {
-      s.arg0 = (s.lambdaArgs[0]);
-      s.lambdaArgs = null;
-    }
-    r0 = ("0" <= s.arg0);
-    s.tmp_0 = r0;
-    r0 = pxsim_numops_toBool(s.tmp_0);
-    if (r0) { step = 1; continue; }
-    r0 = s.tmp_0;
-    { step = 2; continue; }
-  case 1:
-    r0 = (s.arg0 <= "9");
-  case 2:
-    // jmp value (already in r0)
-    s.tmp_1 = r0;
-    r0 = pxsim_numops_toBoolDecr(s.tmp_1);
-    if (!r0) { step = 3; continue; }
-    r0 = pxsim_String_.charCodeAt(s.arg0, 0);
-    s.tmp_2 = r0;
-    r0 = pxsim_String_.charCodeAt("0", 0);
-    s.tmp_3 = r0;
-    r0 = (s.tmp_2 - s.tmp_3);
-    { step = 19; continue; }
-    { step = 18; continue; }
-  case 3:
-    r0 = ("A" <= s.arg0);
-    s.tmp_4 = r0;
-    r0 = pxsim_numops_toBool(s.tmp_4);
-    if (r0) { step = 4; continue; }
-    r0 = s.tmp_4;
-    { step = 5; continue; }
-  case 4:
-    r0 = (s.arg0 <= "Z");
-  case 5:
-    // jmp value (already in r0)
-    s.tmp_5 = r0;
-    r0 = pxsim_numops_toBoolDecr(s.tmp_5);
-    if (!r0) { step = 6; continue; }
-    r0 = pxsim_String_.charCodeAt(s.arg0, 0);
-    s.tmp_7 = r0;
-    r0 = pxsim_String_.charCodeAt("A", 0);
-    s.tmp_8 = r0;
-    r0 = (s.tmp_7 - s.tmp_8);
-    s.tmp_6 = r0;
-    r0 = (s.tmp_6 + 10);
-    { step = 19; continue; }
-    { step = 17; continue; }
-  case 6:
-    s.tmp_9 = r0 = s.arg0;
-    r0 = pxsim_pxtcore.switch_eq(" ", s.tmp_9);
-    if (r0) { step = 7; continue; }
-    r0 = pxsim_pxtcore.switch_eq("$", s.tmp_9);
-    if (r0) { step = 8; continue; }
-    r0 = pxsim_pxtcore.switch_eq("%", s.tmp_9);
-    if (r0) { step = 9; continue; }
-    r0 = pxsim_pxtcore.switch_eq("*", s.tmp_9);
-    if (r0) { step = 10; continue; }
-    r0 = pxsim_pxtcore.switch_eq("+", s.tmp_9);
-    if (r0) { step = 11; continue; }
-    r0 = pxsim_pxtcore.switch_eq("-", s.tmp_9);
-    if (r0) { step = 12; continue; }
-    r0 = pxsim_pxtcore.switch_eq(".", s.tmp_9);
-    if (r0) { step = 13; continue; }
-    r0 = pxsim_pxtcore.switch_eq("/", s.tmp_9);
-    if (r0) { step = 14; continue; }
-    r0 = pxsim_pxtcore.switch_eq(":", s.tmp_9);
-    if (r0) { step = 15; continue; }
-    r0 = s.tmp_9;
-    { step = 16; continue; }
-  case 7:
-    r0 = 36;
-    { step = 19; continue; }
-  case 8:
-    r0 = 37;
-    { step = 19; continue; }
-  case 9:
-    r0 = 38;
-    { step = 19; continue; }
-  case 10:
-    r0 = 39;
-    { step = 19; continue; }
-  case 11:
-    r0 = 40;
-    { step = 19; continue; }
-  case 12:
-    r0 = 41;
-    { step = 19; continue; }
-  case 13:
-    r0 = 42;
-    { step = 19; continue; }
-  case 14:
-    r0 = 43;
-    { step = 19; continue; }
-  case 15:
-    r0 = 44;
-    { step = 19; continue; }
-  case 16:
-    s.tmp_10 = qrcode_panic__P41912_mk(s);
-    if ((s.arg0) && (s.arg0).vtable) {
-    setupResume(s, 21);
-    pxsim_String__stringConv(s.arg0);
-    checkResumeConsumed();
-    return;
-    } else { s.retval = (s.arg0) + ""; }
-  case 21:
-    r0 = s.retval;
-    s.tmp_11 = r0;
-    r0 = pxsim_String__concat("illegal char :", s.tmp_11);
-    s.tmp_10.arg0 = r0;
-    s.pc = 20; return s.tmp_10;
-  case 20:
-    r0 = s.retval;
-    { step = 19; continue; }
-  case 17:
-  case 18:
-    r0 = undefined;
-  case 19:
-    return leave(s, r0)
-  default: oops()
-} } }
-qrcode_QRAlphaNum_getCode__P41821.info = {"start":656,"length":631,"line":34,"column":4,"endLine":55,"endColumn":5,"fileName":"qralphanum.ts","functionName":"getCode","argumentNames":["c"]}
-
-function qrcode_QRAlphaNum_getCode__P41821_mk(s) {
-    checkStack(s.depth);
-    return {
-        parent: s, fn: qrcode_QRAlphaNum_getCode__P41821, depth: s.depth + 1,
-        pc: 0, retval: undefined, r0: undefined, overwrittenPC: false, lambdaArgs: null,
-  tmp_0: undefined,
-  tmp_1: undefined,
-  tmp_2: undefined,
-  tmp_3: undefined,
-  tmp_4: undefined,
-  tmp_5: undefined,
-  tmp_6: undefined,
-  tmp_7: undefined,
-  tmp_8: undefined,
-  tmp_9: undefined,
-  tmp_10: undefined,
-  tmp_11: undefined,
-  arg0: undefined,
-} }
-
-
-
-
-
-function qrcode_QRNumber_getLength__P42043(s) {
-let r0 = s.r0, step = s.pc;
-s.pc = -1;
-
-
-while (true) {
-if (yieldSteps-- < 0 && maybeYield(s, step, r0)) return null;
-switch (step) {
-  case 0:
-
-    if (s.lambdaArgs) {
-      s.arg0 = (s.lambdaArgs[0]);
-      s.lambdaArgs = null;
-    }
-    r0 = s.arg0;
-    if (!checkSubtype(r0, qrcode_QRNumber__C42039_VT)) failedCast(r0);
-    r0 = s.arg0.fields["data"];
-    s.tmp_0 = r0;
-    r0 = pxsim_String_.length(s.tmp_0);
-    return leave(s, r0)
-  default: oops()
-} } }
-qrcode_QRNumber_getLength__P42043.info = {"start":681,"length":71,"line":32,"column":4,"endLine":34,"endColumn":5,"fileName":"qrnumber.ts","functionName":"getLength","argumentNames":["this"]}
-
-function qrcode_QRNumber_getLength__P42043_mk(s) {
-    checkStack(s.depth);
-    return {
-        parent: s, fn: qrcode_QRNumber_getLength__P42043, depth: s.depth + 1,
-        pc: 0, retval: undefined, r0: undefined, overwrittenPC: false, lambdaArgs: null,
-  tmp_0: undefined,
-  arg0: undefined,
-} }
-
-
-
-
-
-function qrcode_QRNumber_write__P42042(s) {
-let r0 = s.r0, step = s.pc;
-s.pc = -1;
-
-
-while (true) {
-if (yieldSteps-- < 0 && maybeYield(s, step, r0)) return null;
-switch (step) {
-  case 0:
-
-    s.data___43394 = undefined;
-    s.i___43396 = undefined;
-    if (s.lambdaArgs) {
-      s.arg0 = (s.lambdaArgs[0]);
-      s.arg1 = (s.lambdaArgs[1]);
-      s.lambdaArgs = null;
-    }
-    r0 = s.arg0;
-    if (!checkSubtype(r0, qrcode_QRNumber__C42039_VT)) failedCast(r0);
-    r0 = s.arg0.fields["data"];
-    s.data___43394 = (r0);
-    s.i___43396 = (0);
-  case 1:
-    r0 = (s.i___43396 + 2);
-    s.tmp_1 = r0;
-    r0 = pxsim_String_.length(s.data___43394);
-    s.tmp_2 = r0;
-    r0 = (s.tmp_1 < s.tmp_2);
-    s.tmp_0 = r0;
-    r0 = pxsim_numops_toBoolDecr(s.tmp_0);
-    if (!r0) { step = 2; continue; }
-    s.tmp_3 = qrcode_BitBuffer_put__P41397_mk(s);
-    s.tmp_3.arg0 = s.arg1;
-    s.tmp_4 = qrcode_QRNumber_strToNum__P42044_mk(s);
-    r0 = pxsim_String_.substr(s.data___43394, s.i___43396, 3);
-    s.tmp_4.arg0 = r0;
-    s.pc = 10; return s.tmp_4;
-  case 10:
-    r0 = s.retval;
-    s.tmp_3.arg1 = r0;
-    s.tmp_3.arg2 = 10;
-    s.pc = 9; return s.tmp_3;
-  case 9:
-    r0 = s.retval;
-    r0 = (s.i___43396 + 3);
-    s.i___43396 = (r0);
-    { step = 1; continue; }
-  case 2:
-    s.tmp_1 = r0 = s.i___43396;
-    r0 = pxsim_String_.length(s.data___43394);
-    s.tmp_2 = r0;
-    r0 = (s.tmp_1 < s.tmp_2);
-    s.tmp_0 = r0;
-    r0 = pxsim_numops_toBoolDecr(s.tmp_0);
-    if (!r0) { step = 7; continue; }
-    r0 = pxsim_String_.length(s.data___43394);
-    s.tmp_5 = r0;
-    r0 = (s.tmp_5 - s.i___43396);
-    s.tmp_4 = r0;
-    r0 = (s.tmp_4 == 1);
-    s.tmp_3 = r0;
-    r0 = pxsim_numops_toBoolDecr(s.tmp_3);
-    if (!r0) { step = 3; continue; }
-    s.tmp_6 = qrcode_BitBuffer_put__P41397_mk(s);
-    s.tmp_6.arg0 = s.arg1;
-    s.tmp_7 = qrcode_QRNumber_strToNum__P42044_mk(s);
-    r0 = pxsim_String_.substr(s.data___43394, s.i___43396, 1);
-    s.tmp_7.arg0 = r0;
-    s.pc = 12; return s.tmp_7;
-  case 12:
-    r0 = s.retval;
-    s.tmp_6.arg1 = r0;
-    s.tmp_6.arg2 = 4;
-    s.pc = 11; return s.tmp_6;
-  case 11:
-    r0 = s.retval;
-    { step = 6; continue; }
-  case 3:
-    r0 = pxsim_String_.length(s.data___43394);
-    s.tmp_2 = r0;
-    r0 = (s.tmp_2 - s.i___43396);
-    s.tmp_1 = r0;
-    r0 = (s.tmp_1 == 2);
-    s.tmp_0 = r0;
-    r0 = pxsim_numops_toBoolDecr(s.tmp_0);
-    if (!r0) { step = 4; continue; }
-    s.tmp_3 = qrcode_BitBuffer_put__P41397_mk(s);
-    s.tmp_3.arg0 = s.arg1;
-    s.tmp_4 = qrcode_QRNumber_strToNum__P42044_mk(s);
-    r0 = pxsim_String_.substr(s.data___43394, s.i___43396, 2);
-    s.tmp_4.arg0 = r0;
-    s.pc = 14; return s.tmp_4;
-  case 14:
-    r0 = s.retval;
-    s.tmp_3.arg1 = r0;
-    s.tmp_3.arg2 = 7;
-    s.pc = 13; return s.tmp_3;
-  case 13:
-    r0 = s.retval;
-  case 4:
-  case 5:
-  case 6:
-  case 7:
-  case 8:
-    r0 = undefined;
-    return leave(s, r0)
-  default: oops()
-} } }
-qrcode_QRNumber_write__P42042.info = {"start":197,"length":478,"line":12,"column":4,"endLine":30,"endColumn":5,"fileName":"qrnumber.ts","functionName":"write","argumentNames":["this","buffer"]}
-
-function qrcode_QRNumber_write__P42042_mk(s) {
-    checkStack(s.depth);
-    return {
-        parent: s, fn: qrcode_QRNumber_write__P42042, depth: s.depth + 1,
-        pc: 0, retval: undefined, r0: undefined, overwrittenPC: false, lambdaArgs: null,
-  tmp_0: undefined,
-  tmp_1: undefined,
-  tmp_2: undefined,
-  tmp_3: undefined,
-  tmp_4: undefined,
-  tmp_5: undefined,
-  tmp_6: undefined,
-  tmp_7: undefined,
-  data___43394: undefined,
-  i___43396: undefined,
-  arg0: undefined,
-  arg1: undefined,
-} }
-
-
-
-
-
-function qrcode_QRNumber_strToNum__P42044(s) {
-let r0 = s.r0, step = s.pc;
-s.pc = -1;
-
-
-while (true) {
-if (yieldSteps-- < 0 && maybeYield(s, step, r0)) return null;
-switch (step) {
-  case 0:
-
-    s.num___43448 = undefined;
-    s.i___43449 = undefined;
-    if (s.lambdaArgs) {
-      s.arg0 = (s.lambdaArgs[0]);
-      s.lambdaArgs = null;
-    }
-    s.num___43448 = (0);
-    s.i___43449 = (0);
-  case 1:
-    s.tmp_1 = r0 = s.i___43449;
-    r0 = pxsim_String_.length(s.arg0);
-    s.tmp_2 = r0;
-    r0 = (s.tmp_1 < s.tmp_2);
-    s.tmp_0 = r0;
-    r0 = pxsim_numops_toBoolDecr(s.tmp_0);
-    if (!r0) { step = 2; continue; }
-    r0 = (s.num___43448 * 10);
-    s.tmp_3 = r0;
-    s.tmp_5 = qrcode_QRNumber_chatToNum__P42045_mk(s);
-    r0 = pxsim_String_.charAt(s.arg0, s.i___43449);
-    s.tmp_5.arg0 = r0;
-    s.pc = 3; return s.tmp_5;
-  case 3:
-    r0 = s.retval;
-    s.tmp_4 = r0;
-    r0 = (s.tmp_3 + s.tmp_4);
-    s.num___43448 = (r0);
-    r0 = (s.i___43449 + 1);
-    s.i___43449 = (r0);
-    { step = 1; continue; }
-  case 2:
-    r0 = s.num___43448;
-    return leave(s, r0)
-  default: oops()
-} } }
-qrcode_QRNumber_strToNum__P42044.info = {"start":758,"length":202,"line":36,"column":4,"endLine":42,"endColumn":5,"fileName":"qrnumber.ts","functionName":"strToNum","argumentNames":["s"]}
-
-function qrcode_QRNumber_strToNum__P42044_mk(s) {
-    checkStack(s.depth);
-    return {
-        parent: s, fn: qrcode_QRNumber_strToNum__P42044, depth: s.depth + 1,
-        pc: 0, retval: undefined, r0: undefined, overwrittenPC: false, lambdaArgs: null,
-  tmp_0: undefined,
-  tmp_1: undefined,
-  tmp_2: undefined,
-  tmp_3: undefined,
-  tmp_4: undefined,
-  tmp_5: undefined,
-  num___43448: undefined,
-  i___43449: undefined,
-  arg0: undefined,
-} }
-
-
-
-
-
-function qrcode_QRNumber_chatToNum__P42045(s) {
-let r0 = s.r0, step = s.pc;
-s.pc = -1;
-
-
-while (true) {
-if (yieldSteps-- < 0 && maybeYield(s, step, r0)) return null;
-switch (step) {
-  case 0:
-
-    if (s.lambdaArgs) {
-      s.arg0 = (s.lambdaArgs[0]);
-      s.lambdaArgs = null;
-    }
-    r0 = ("0" <= s.arg0);
-    s.tmp_0 = r0;
-    r0 = pxsim_numops_toBool(s.tmp_0);
-    if (r0) { step = 1; continue; }
-    r0 = s.tmp_0;
-    { step = 2; continue; }
-  case 1:
-    r0 = (s.arg0 <= "9");
-  case 2:
-    // jmp value (already in r0)
-    s.tmp_1 = r0;
-    r0 = pxsim_numops_toBoolDecr(s.tmp_1);
-    if (!r0) { step = 3; continue; }
-    r0 = pxsim_String_.charCodeAt(s.arg0, 0);
-    s.tmp_2 = r0;
-    r0 = pxsim_String_.charCodeAt("0", 0);
-    s.tmp_3 = r0;
-    r0 = (s.tmp_2 - s.tmp_3);
-    { step = 5; continue; }
-  case 3:
-  case 4:
-    s.tmp_4 = qrcode_panic__P41912_mk(s);
-    if ((s.arg0) && (s.arg0).vtable) {
-    setupResume(s, 7);
-    pxsim_String__stringConv(s.arg0);
-    checkResumeConsumed();
-    return;
-    } else { s.retval = (s.arg0) + ""; }
-  case 7:
-    r0 = s.retval;
-    s.tmp_5 = r0;
-    r0 = pxsim_String__concat("illegal char :", s.tmp_5);
-    s.tmp_4.arg0 = r0;
-    s.pc = 6; return s.tmp_4;
-  case 6:
-    r0 = s.retval;
-  case 5:
-    return leave(s, r0)
-  default: oops()
-} } }
-qrcode_QRNumber_chatToNum__P42045.info = {"start":966,"length":196,"line":44,"column":4,"endLine":49,"endColumn":5,"fileName":"qrnumber.ts","functionName":"chatToNum","argumentNames":["c"]}
-
-function qrcode_QRNumber_chatToNum__P42045_mk(s) {
-    checkStack(s.depth);
-    return {
-        parent: s, fn: qrcode_QRNumber_chatToNum__P42045, depth: s.depth + 1,
-        pc: 0, retval: undefined, r0: undefined, overwrittenPC: false, lambdaArgs: null,
-  tmp_0: undefined,
-  tmp_1: undefined,
-  tmp_2: undefined,
-  tmp_3: undefined,
-  tmp_4: undefined,
-  tmp_5: undefined,
   arg0: undefined,
 } }
 
@@ -45631,140 +46811,11 @@ const texteffects_TextEffect__C41326_VT = mkVTable({
     "set/getState": null,
   },
 });
-const qrcode_QRCode__C41924_VT = mkVTable({
-  name: "QRCode",
-  numFields: 5,
-  classNo: 20,
-  lastSubtypeNo: 20,
-  maxBgInstances: null,
-  methods: {
-  },
-  iface: {
-    "typeNumber": null,
-    "set/typeNumber": null,
-    "errorCorrectLevel": null,
-    "set/errorCorrectLevel": null,
-    "qrDataList": null,
-    "set/qrDataList": null,
-    "modules": null,
-    "set/modules": null,
-    "moduleCount": null,
-    "set/moduleCount": null,
-    "setTypeNumber": qrcode_QRCode_setTypeNumber__P41926,
-    "setErrorCorrectLevel": qrcode_QRCode_setErrorCorrectLevel__P41928,
-    "addData": qrcode_QRCode_addData__P41931,
-    "isDark": qrcode_QRCode_isDark__P41935,
-    "getModuleCount": qrcode_QRCode_getModuleCount__P41936,
-    "make": qrcode_QRCode_make__P41937,
-    "getBestMaskPattern": qrcode_QRCode_getBestMaskPattern__P41938,
-    "makeImpl": qrcode_QRCode_makeImpl__P41939,
-    "mapData": qrcode_QRCode_mapData__P41940,
-    "setupPositionAdjustPattern": qrcode_QRCode_setupPositionAdjustPattern__P41941,
-    "setupPositionProbePattern": qrcode_QRCode_setupPositionProbePattern__P41942,
-    "setupTimingPattern": qrcode_QRCode_setupTimingPattern__P41943,
-    "setupTypeNumber": qrcode_QRCode_setupTypeNumber__P41944,
-    "setupTypeInfo": qrcode_QRCode_setupTypeInfo__P41945,
-    "createData": qrcode_QRCode_createData__P41946,
-    "createBytes": qrcode_QRCode_createBytes__P41947,
-    "toImage": qrcode_QRCode_toImage__P41948,
-  },
-});
-const qrcode_QRData__C41775_VT = mkVTable({
-  name: "QRData",
-  numFields: 2,
-  classNo: 21,
-  lastSubtypeNo: 24,
-  maxBgInstances: null,
-  methods: {
-    "getLength": qrcode_QRData_getLength__P41778,
-    "write": qrcode_QRData_write__P41779,
-  },
-  iface: {
-    "mode": null,
-    "set/mode": null,
-    "data": null,
-    "set/data": null,
-    "getMode": qrcode_QRData_getMode__P41776,
-    "getData": qrcode_QRData_getData__P41777,
-    "getLength": qrcode_QRData_getLength__P41778,
-    "write": qrcode_QRData_write__P41779,
-    "getLengthInBits": qrcode_QRData_getLengthInBits__P41780,
-  },
-});
-const qrcode_QRNumber__C42039_VT = mkVTable({
-  name: "QRNumber",
-  numFields: 2,
-  classNo: 22,
-  lastSubtypeNo: 22,
-  maxBgInstances: null,
-  methods: {
-    "getLength": qrcode_QRNumber_getLength__P42043,
-    "write": qrcode_QRNumber_write__P42042,
-  },
-  iface: {
-    "mode": null,
-    "set/mode": null,
-    "data": null,
-    "set/data": null,
-    "write": qrcode_QRNumber_write__P42042,
-    "getLength": qrcode_QRNumber_getLength__P42043,
-    "strToNum": qrcode_QRNumber_strToNum__P42044,
-    "chatToNum": qrcode_QRNumber_chatToNum__P42045,
-    "getMode": qrcode_QRData_getMode__P41776,
-    "getData": qrcode_QRData_getData__P41777,
-    "getLengthInBits": qrcode_QRData_getLengthInBits__P41780,
-  },
-});
-const qrcode_QRAlphaNum__C41817_VT = mkVTable({
-  name: "QRAlphaNum",
-  numFields: 2,
-  classNo: 23,
-  lastSubtypeNo: 23,
-  maxBgInstances: null,
-  methods: {
-    "getLength": qrcode_QRAlphaNum_getLength__P41820,
-    "write": qrcode_QRAlphaNum_write__P41819,
-  },
-  iface: {
-    "mode": null,
-    "set/mode": null,
-    "data": null,
-    "set/data": null,
-    "write": qrcode_QRAlphaNum_write__P41819,
-    "getLength": qrcode_QRAlphaNum_getLength__P41820,
-    "getCode": qrcode_QRAlphaNum_getCode__P41821,
-    "getMode": qrcode_QRData_getMode__P41776,
-    "getData": qrcode_QRData_getData__P41777,
-    "getLengthInBits": qrcode_QRData_getLengthInBits__P41780,
-  },
-});
-const qrcode_QR8BitByte__C41773_VT = mkVTable({
-  name: "QR8BitByte",
-  numFields: 2,
-  classNo: 24,
-  lastSubtypeNo: 24,
-  maxBgInstances: null,
-  methods: {
-    "getLength": qrcode_QR8BitByte_getLength__P41782,
-    "write": qrcode_QR8BitByte_write__P41781,
-  },
-  iface: {
-    "mode": null,
-    "set/mode": null,
-    "data": null,
-    "set/data": null,
-    "write": qrcode_QR8BitByte_write__P41781,
-    "getLength": qrcode_QR8BitByte_getLength__P41782,
-    "getMode": qrcode_QRData_getMode__P41776,
-    "getData": qrcode_QRData_getData__P41777,
-    "getLengthInBits": qrcode_QRData_getLengthInBits__P41780,
-  },
-});
 const sprites_BaseSprite__C40081_VT = mkVTable({
   name: "BaseSprite",
   numFields: 2,
-  classNo: 25,
-  lastSubtypeNo: 28,
+  classNo: 20,
+  lastSubtypeNo: 23,
   maxBgInstances: null,
   methods: {
     "__visible": sprites_BaseSprite___visible__P40082,
@@ -45788,8 +46839,8 @@ const sprites_BaseSprite__C40081_VT = mkVTable({
 const Sprite__C40210_VT = mkVTable({
   name: "Sprite",
   numFields: 24,
-  classNo: 26,
-  lastSubtypeNo: 26,
+  classNo: 21,
+  lastSubtypeNo: 21,
   maxBgInstances: null,
   methods: {
     "__visible": Sprite___visible__P40229,
@@ -45894,8 +46945,8 @@ const Sprite__C40210_VT = mkVTable({
 const PhysicsEngine__C40316_VT = mkVTable({
   name: "PhysicsEngine",
   numFields: 0,
-  classNo: 29,
-  lastSubtypeNo: 30,
+  classNo: 24,
+  lastSubtypeNo: 25,
   maxBgInstances: null,
   methods: {
     "addSprite": PhysicsEngine_addSprite__P40317,
@@ -45915,8 +46966,8 @@ const PhysicsEngine__C40316_VT = mkVTable({
 const game_Hitbox__C40196_VT = mkVTable({
   name: "Hitbox",
   numFields: 5,
-  classNo: 31,
-  lastSubtypeNo: 31,
+  classNo: 26,
+  lastSubtypeNo: 26,
   maxBgInstances: null,
   methods: {
   },
@@ -45940,8 +46991,8 @@ const game_Hitbox__C40196_VT = mkVTable({
 const scene_Scene__C40616_VT = mkVTable({
   name: "Scene",
   numFields: 23,
-  classNo: 32,
-  lastSubtypeNo: 32,
+  classNo: 27,
+  lastSubtypeNo: 27,
   maxBgInstances: null,
   methods: {
   },
@@ -46002,8 +47053,8 @@ const scene_Scene__C40616_VT = mkVTable({
 const sprites_SpriteSet__C40280_VT = mkVTable({
   name: "SpriteSet",
   numFields: 1,
-  classNo: 33,
-  lastSubtypeNo: 33,
+  classNo: 28,
+  lastSubtypeNo: 28,
   maxBgInstances: null,
   methods: {
   },
@@ -46017,6 +47068,71 @@ const sprites_SpriteSet__C40280_VT = mkVTable({
     "toString": sprites_SpriteSet_toString__P40290,
   },
   toStringMethod: sprites_SpriteSet_toString__P40290,
+});
+const qrcode_QRCode__C41924_VT = mkVTable({
+  name: "QRCode",
+  numFields: 5,
+  classNo: 29,
+  lastSubtypeNo: 29,
+  maxBgInstances: null,
+  methods: {
+  },
+  iface: {
+    "typeNumber": null,
+    "set/typeNumber": null,
+    "errorCorrectLevel": null,
+    "set/errorCorrectLevel": null,
+    "qrDataList": null,
+    "set/qrDataList": null,
+    "modules": null,
+    "set/modules": null,
+    "moduleCount": null,
+    "set/moduleCount": null,
+    "setTypeNumber": qrcode_QRCode_setTypeNumber__P41926,
+    "setErrorCorrectLevel": qrcode_QRCode_setErrorCorrectLevel__P41928,
+    "getBestCellSize": qrcode_QRCode_getBestCellSize__P41929,
+    "addData": qrcode_QRCode_addData__P41931,
+    "add": qrcode_QRCode_add__P41932,
+    "getData": qrcode_QRCode_getData__P41934,
+    "isDark": qrcode_QRCode_isDark__P41935,
+    "getModuleCount": qrcode_QRCode_getModuleCount__P41936,
+    "make": qrcode_QRCode_make__P41937,
+    "getBestMaskPattern": qrcode_QRCode_getBestMaskPattern__P41938,
+    "makeImpl": qrcode_QRCode_makeImpl__P41939,
+    "mapData": qrcode_QRCode_mapData__P41940,
+    "setupPositionAdjustPattern": qrcode_QRCode_setupPositionAdjustPattern__P41941,
+    "setupPositionProbePattern": qrcode_QRCode_setupPositionProbePattern__P41942,
+    "setupTimingPattern": qrcode_QRCode_setupTimingPattern__P41943,
+    "setupTypeNumber": qrcode_QRCode_setupTypeNumber__P41944,
+    "setupTypeInfo": qrcode_QRCode_setupTypeInfo__P41945,
+    "createData": qrcode_QRCode_createData__P41946,
+    "createBytes": qrcode_QRCode_createBytes__P41947,
+    "toImage": qrcode_QRCode_toImage__P41948,
+    "clean": qrcode_QRCode_clean__P41949,
+    "getMinimumQRCode": qrcode_QRCode_getMinimumQRCode__P41950,
+  },
+});
+const qrcode_QRData__C41775_VT = mkVTable({
+  name: "QRData",
+  numFields: 2,
+  classNo: 30,
+  lastSubtypeNo: 33,
+  maxBgInstances: null,
+  methods: {
+    "getLength": qrcode_QRData_getLength__P41778,
+    "write": qrcode_QRData_write__P41779,
+  },
+  iface: {
+    "mode": null,
+    "set/mode": null,
+    "data": null,
+    "set/data": null,
+    "getMode": qrcode_QRData_getMode__P41776,
+    "getData": qrcode_QRData_getData__P41777,
+    "getLength": qrcode_QRData_getLength__P41778,
+    "write": qrcode_QRData_write__P41779,
+    "getLengthInBits": qrcode_QRData_getLengthInBits__P41780,
+  },
 });
 const qrcode_BitBuffer__C41392_VT = mkVTable({
   name: "BitBuffer",
@@ -46077,6 +47193,75 @@ const qrcode_Polynomial__C41512_VT = mkVTable({
     "mod": qrcode_Polynomial_mod__P41518,
   },
   toStringMethod: qrcode_Polynomial_toString__P41515,
+});
+const qrcode_QRNumber__C42039_VT = mkVTable({
+  name: "QRNumber",
+  numFields: 2,
+  classNo: 31,
+  lastSubtypeNo: 31,
+  maxBgInstances: null,
+  methods: {
+    "getLength": qrcode_QRNumber_getLength__P42043,
+    "write": qrcode_QRNumber_write__P42042,
+  },
+  iface: {
+    "mode": null,
+    "set/mode": null,
+    "data": null,
+    "set/data": null,
+    "write": qrcode_QRNumber_write__P42042,
+    "getLength": qrcode_QRNumber_getLength__P42043,
+    "strToNum": qrcode_QRNumber_strToNum__P42044,
+    "chatToNum": qrcode_QRNumber_chatToNum__P42045,
+    "getMode": qrcode_QRData_getMode__P41776,
+    "getData": qrcode_QRData_getData__P41777,
+    "getLengthInBits": qrcode_QRData_getLengthInBits__P41780,
+  },
+});
+const qrcode_QRAlphaNum__C41817_VT = mkVTable({
+  name: "QRAlphaNum",
+  numFields: 2,
+  classNo: 32,
+  lastSubtypeNo: 32,
+  maxBgInstances: null,
+  methods: {
+    "getLength": qrcode_QRAlphaNum_getLength__P41820,
+    "write": qrcode_QRAlphaNum_write__P41819,
+  },
+  iface: {
+    "mode": null,
+    "set/mode": null,
+    "data": null,
+    "set/data": null,
+    "write": qrcode_QRAlphaNum_write__P41819,
+    "getLength": qrcode_QRAlphaNum_getLength__P41820,
+    "getCode": qrcode_QRAlphaNum_getCode__P41821,
+    "getMode": qrcode_QRData_getMode__P41776,
+    "getData": qrcode_QRData_getData__P41777,
+    "getLengthInBits": qrcode_QRData_getLengthInBits__P41780,
+  },
+});
+const qrcode_QR8BitByte__C41773_VT = mkVTable({
+  name: "QR8BitByte",
+  numFields: 2,
+  classNo: 33,
+  lastSubtypeNo: 33,
+  maxBgInstances: null,
+  methods: {
+    "getLength": qrcode_QR8BitByte_getLength__P41782,
+    "write": qrcode_QR8BitByte_write__P41781,
+  },
+  iface: {
+    "mode": null,
+    "set/mode": null,
+    "data": null,
+    "set/data": null,
+    "write": qrcode_QR8BitByte_write__P41781,
+    "getLength": qrcode_QR8BitByte_getLength__P41782,
+    "getMode": qrcode_QRData_getMode__P41776,
+    "getData": qrcode_QRData_getData__P41777,
+    "getLengthInBits": qrcode_QRData_getLengthInBits__P41780,
+  },
 });
 const scene_systemMenu_PauseMenu__C41004_VT = mkVTable({
   name: "PauseMenu",
@@ -46186,8 +47371,8 @@ const effects_ImageEffect__C41312_VT = mkVTable({
 const particles_ParticleSource__C41134_VT = mkVTable({
   name: "ParticleSource",
   numFields: 13,
-  classNo: 27,
-  lastSubtypeNo: 27,
+  classNo: 22,
+  lastSubtypeNo: 22,
   maxBgInstances: null,
   methods: {
     "__visible": sprites_BaseSprite___visible__P40082,
@@ -46641,8 +47826,8 @@ const control_FrameCallback__C39736_VT = mkVTable({
 const ArcadePhysicsEngine__C40344_VT = mkVTable({
   name: "ArcadePhysicsEngine",
   numFields: 6,
-  classNo: 30,
-  lastSubtypeNo: 30,
+  classNo: 25,
+  lastSubtypeNo: 25,
   maxBgInstances: null,
   methods: {
     "addSprite": ArcadePhysicsEngine_addSprite__P40353,
@@ -46812,8 +47997,8 @@ const music_Melody__C39887_VT = mkVTable({
 const scene_Renderable__C40564_VT = mkVTable({
   name: "Renderable",
   numFields: 4,
-  classNo: 28,
-  lastSubtypeNo: 28,
+  classNo: 23,
+  lastSubtypeNo: 23,
   maxBgInstances: null,
   methods: {
     "__visible": scene_Renderable___visible__P40566,
@@ -46909,7 +48094,7 @@ const tiles_Location__C40490_VT = mkVTable({
   },
 });
 
-const breakpoints = setupDebugger(1, ["qrcode_QRUtil_G15___44332","qrcode_QRUtil_G18___44377","qrcode_QRUtil_G15_MASK___44359","qrcode_QRCode_PAD0___41952","qrcode_QRCode_PAD1___41954","qrcode_QRMath_EXP_TABLE___43492","qrcode_QRMath_LOG_TABLE___43493","RS_BLOCK_TABLE___45339","qrcode_QRUtil_PATTERN_POSITION_TABLE___43590"])
+const breakpoints = setupDebugger(1, ["qrcode_QRUtil_G15___44332","qrcode_QRUtil_G18___44377","qrcode_QRUtil_G15_MASK___44359","ig___62072","sprite___62076","qrcode_QRUtil_PATTERN_POSITION_TABLE___43590","qrcode_QRUtil_MAX_LENGTH___43593","qrcode_QRMath_EXP_TABLE___43492","qrcode_QRMath_LOG_TABLE___43493","qrcode_QRCode_PAD0___41952","qrcode_QRCode_PAD1___41954","RS_BLOCK_TABLE___45339"])
 
-return _main___P57491
+return _main___P66205
 })
