@@ -31,6 +31,10 @@
         "game": "*"
     },
     "public": true,
+    "targetVersions": {
+        "target": "1.8.17",
+        "targetId": "arcade"
+    },
     "supportedTargets": [
         "arcade"
     ],

@@ -137,7 +137,7 @@ namespace qrcode {
     }
   
     private static isAlphaNum(s: string): boolean {
-      for (let i = 0; i < s.length(); i++) {
+      for (let i = 0; i < s.length; i++) {
         let c = s.charAt(i);
         if (!('0' <= c && c <= '9') && !('A' <= c && c <= 'Z') && " $%*+-./:".indexOf(c) == -1) {
           return false;
