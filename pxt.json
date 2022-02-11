@@ -1,6 +1,6 @@
 {
     "name": "qrcode",
-    "version": "0.0.6",
+    "version": "0.0.7",
     "description": "A QR code generator for MakeCode",
     "license": "MIT",
     "dependencies": {
@@ -31,6 +31,10 @@
         "game": "*"
     },
     "public": true,
+    "targetVersions": {
+        "target": "1.8.17",
+        "targetId": "arcade"
+    },
     "supportedTargets": [
         "arcade"
     ],
